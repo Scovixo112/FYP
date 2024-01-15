@@ -1,0 +1,71 @@
+body {
+    background-color: #f8f9fa; /* Bootstrap background color */
+    font-family: 'Arial', sans-serif; /* Use a common sans-serif font */
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.left-box {
+    background: #103cbe;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.featured-image img {
+    width: 250px;
+}
+
+.right-box {
+    padding: 40px;
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Darken the text color */
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555; /* Slightly darken label text color */
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Add a border to input fields */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Style the signup link */
+p.mt-3 a {
+    color: #007bff; /* Bootstrap primary color */
+}
+
