@@ -223,26 +223,26 @@ def update_todo():
         if 'email' in session:
             email = session['email']
 
-            # Fetch user data from MongoDB
-            user_data = users_collection.find_one({'email': email})
-
             # Get data from the request
             data = request.get_json()
-            todo_id = data.get('todo_id')
-            new_todo_task = data.get('todo_task')
+            user_id = data.get('user_id')
+            todo_task = data.get('todo_task')
+
+            # Fetch user data from MongoDB
+            user_data = users_collection.find_one({'_id': ObjectId(user_id)})
 
             # Update the specified todo in the user's todo list
             todo_list = user_data.get('todo_list', [])
             updated = False
             for todo in todo_list:
-                if str(todo['_id']) == todo_id:
-                    todo.update({'todo_task': new_todo_task})
+                if str(todo['_id']) == user_id:
+                    todo.update({'todo_task': todo_task})
                     updated = True
                     break
 
             # If the todo was updated, update user data in MongoDB
             if updated:
-                users_collection.update_one({'email': email}, {'$set': {'todo_list': todo_list}})
+                users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
                 return jsonify({"message": "Todo updated successfully"})
             else:
                 return jsonify({"message": "Todo not found"})
@@ -265,18 +265,20 @@ def delete_todo():
 
             # Get data from the request
             data = request.get_json()
-            todo_id = data.get('todo_id')
+            user_id = data.get('user_id')
+            todo_task = data.get('todo_task')
 
             # Fetch user data from MongoDB
-            user_data = users_collection.find_one({'email': email})
+            user_data = users_collection.find_one({'_id': ObjectId(user_id)})
 
             # Delete the specified todo from the user's todo list
             todo_list = user_data.get('todo_list', [])
-            new_todo_list = [todo for todo in todo_list if str(todo['_id']) != todo_id]
+
+            new_todo_list = [todo for todo in todo_list if str(todo['todo_task']) != todo_task]
 
             # If the todo was deleted, update user data in MongoDB
             if len(new_todo_list) < len(todo_list):
-                users_collection.update_one({'email': email}, {'$set': {'todo_list': new_todo_list}})
+                users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': new_todo_list}})
                 return jsonify({"message": "Todo deleted successfully"})
             else:
                 return jsonify({"message": "Todo not found"})
