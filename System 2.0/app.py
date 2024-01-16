@@ -214,9 +214,10 @@ def retrieve_todos():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
 # New route for updating a todo
-@app.route('/update_todo/<string:todo_id>', methods=['PUT'])
-def update_todo(todo_id):
+@app.route('/update_todo', methods=['POST'])
+def update_todo():
     try:
         # Check if the user is logged in
         if 'email' in session:
@@ -227,16 +228,24 @@ def update_todo(todo_id):
 
             # Get data from the request
             data = request.get_json()
+            todo_id = data.get('todo_id')
+            new_todo_task = data.get('todo_task')
 
             # Update the specified todo in the user's todo list
             todo_list = user_data.get('todo_list', [])
+            updated = False
             for todo in todo_list:
                 if str(todo['_id']) == todo_id:
-                    todo.update({'todo_task': data.get('todo_task', todo.get('todo_task'))})
+                    todo.update({'todo_task': new_todo_task})
+                    updated = True
+                    break
 
-            # Update user data in MongoDB
-            users_collection.update_one({'email': email}, {'$set': {'todo_list': todo_list}})
-            return jsonify({"message": "Todo updated successfully"})
+            # If the todo was updated, update user data in MongoDB
+            if updated:
+                users_collection.update_one({'email': email}, {'$set': {'todo_list': todo_list}})
+                return jsonify({"message": "Todo updated successfully"})
+            else:
+                return jsonify({"message": "Todo not found"})
 
         else:
             return jsonify({"error": "User not logged in"})
@@ -244,21 +253,26 @@ def update_todo(todo_id):
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+
 # New route for deleting a todo
 @app.route('/delete_todo', methods=['POST'])
 def delete_todo():
-    print("sucessfully deleted")
     try:
         # Check if the user is logged in
         if 'email' in session:
             email = session['email']
+
+            # Get data from the request
+            data = request.get_json()
+            todo_id = data.get('todo_id')
 
             # Fetch user data from MongoDB
             user_data = users_collection.find_one({'email': email})
 
             # Delete the specified todo from the user's todo list
             todo_list = user_data.get('todo_list', [])
-            new_todo_list = [todo for todo in todo_list if str(todo['_id']) != 123]
+            new_todo_list = [todo for todo in todo_list if str(todo['_id']) != todo_id]
 
             # If the todo was deleted, update user data in MongoDB
             if len(new_todo_list) < len(todo_list):
@@ -272,6 +286,7 @@ def delete_todo():
 
     except Exception as e:
         return jsonify({"error": str(e)})
+
 
 @app.route('/take_test', methods=['GET', 'POST'])
 def take_test():

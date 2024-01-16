@@ -58,15 +58,17 @@
                             {% for todo in user_data['todo_list'] %}
                                 <li>
                                     {{ todo.todo_task }}
-                                    <span class="edit-icon" onclick="editTodo('{{ todo._id }}')">✎</span>
-                                    <span class="delete-icon" onclick="deleteTodo()">🗑</span>
+                                    <span class="edit-icon" onclick="editTodo('{{ todo._id|string }}')">✎</span>
+                                    <span class="delete-icon" onclick="deleteTodo('{{ todo._id|string }}')">🗑</span>
                                 </li>
                             {% endfor %}
                         {% else %}
                             <li id="emptyTodo">TODO List empty</li>
                         {% endif %}
-
                     </ul>
+
+
+
                 
                     <!-- Edit Form -->
                     <form id="editForm" onsubmit="return saveTodo()">
@@ -120,43 +122,61 @@
         return false; // Prevent the form from submitting in the traditional way
     }
 
-    //update
+    // update
     function editTodo(todoId) {
-    var newTodoTask = prompt("Edit the todo task:", "");
+        var newTodoTask = prompt("Edit the todo task:", "");
 
-    if (newTodoTask !== null) {
-        fetch('/update_todo/' + todoId, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "todo_task": newTodoTask })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            window.location.reload();
-        })
-        .catch(error => console.error('Error:', error));
+        if (newTodoTask !== null) {
+            // Make an AJAX request to the update_todo route
+            fetch('/update_todo', + {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "todo_id": todoId,
+                    "todo_task": newTodoTask
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
     }
-}
 
-    //delete
-    function deleteTodo() {
+
+
+    // delete
+    function deleteTodo(todoId) {
         var confirmDelete = confirm("Are you sure you want to delete this todo?");
 
         if (confirmDelete) {
-            fetch('/delete_todo/', {
-            method: 'POST'
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-            window.location.reload();
-        })
-        .catch(error => console.error('Error:', error));
+            // Make an AJAX request to the delete_todo route
+            fetch('/delete_todo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "todo_id": todoId })
+            })
+            .then(response => response.json())
+            .then(data => {
+            if (data.message) {
+                alert(data.message);
+                window.location.reload();
+            } else {
+                console.error('Error:', data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
     }
-}
+
+
+
 
 
     // Fetch and display todos when the page loads
@@ -173,7 +193,7 @@
                         const listItem = document.createElement('li');
                         listItem.textContent = todo.todo_task;
                         listItem.innerHTML += `<span class="edit-icon" onclick="editTodo('${todo._id}')">✎</span>`;
-                        listItem.innerHTML += `<span class="delete-icon" onclick="deleteTodo()">🗑</span>`;
+                        listItem.innerHTML += `<span class="delete-icon" onclick="deleteTodo(this)">🗑</span>`;
                         todoList.appendChild(listItem);
                     });
                 } else {
