@@ -215,6 +215,56 @@ def retrieve_todos():
         return jsonify({"error": str(e)})
 
 
+# # New route for updating a todo
+# @app.route('/update_todo', methods=['POST'])
+# def update_todo():
+#     try:
+#         # Check if the user is logged in
+#         print("Reached update_todo route")
+
+#         if 'email' in session:
+#             email = session['email']
+
+#             # Get data from the request
+#             data = request.get_json()
+#             user_id = data.get('user_id')
+#             todo_task = data.get('todo_task')
+
+#             print(f"Received data - user_id: {user_id}, todo_task: {todo_task}")
+
+#             # Fetch user data from MongoDB
+#             user_data = users_collection.find_one({'_id': ObjectId(user_id)})
+
+#             print("User data from MongoDB:", user_data)
+
+#             if user_data:
+#                 # Update the specified todo in the user's todo list
+#                 todo_list = user_data.get('todo_list', [])
+#                 updated = False
+
+#                 # Iterate through the array using index
+#                 for i, todo in enumerate(todo_list):
+#                     if i == int(user_id):
+#                         todo['todo_task'] = todo_task
+#                         updated = True
+#                         break
+
+#                 # If the todo was updated, update user data in MongoDB
+#                 if updated:
+#                     users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
+#                     return jsonify({"message": "Todo updated successfully"})
+#                 else:
+#                     return jsonify({"message": "Todo not found"})
+#             else:
+#                 return jsonify({"message": "User not found"})
+
+#         else:
+#             return jsonify({"error": "User not logged in"})
+
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
+
+
 # New route for updating a todo
 @app.route('/update_todo', methods=['POST'])
 def update_todo():
@@ -226,32 +276,41 @@ def update_todo():
             # Get data from the request
             data = request.get_json()
             user_id = data.get('user_id')
-            todo_task = data.get('todo_task')
+            old_todo_task = data.get('old_todo_task')  # Add a field for the old todo_task
+            new_todo_task = data.get('new_todo_task')
 
             # Fetch user data from MongoDB
             user_data = users_collection.find_one({'_id': ObjectId(user_id)})
 
-            # Update the specified todo in the user's todo list
-            todo_list = user_data.get('todo_list', [])
-            updated = False
-            for todo in todo_list:
-                if str(todo['_id']) == user_id:
-                    todo.update({'todo_task': todo_task})
-                    updated = True
-                    break
+            if user_data:
+                # Update the specified todo in the user's todo list
+                todo_list = user_data.get('todo_list', {})
+                updated = False
 
-            # If the todo was updated, update user data in MongoDB
-            if updated:
-                users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
-                return jsonify({"message": "Todo updated successfully"})
+                # Iterate through the dictionary using keys
+                for key in todo_list:
+                    if str(key) == old_todo_task:  # Convert the key to string for comparison
+                        todo_list[key] = new_todo_task  # Update the todo_task
+                        updated = True
+                        break
+
+
+
+                # If the todo was updated, update user data in MongoDB
+                if updated:
+                    users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
+                    return jsonify({"message": "Todo updated successfully"})
+                else:
+                    return jsonify({"message": "Todo not found"})
             else:
-                return jsonify({"message": "Todo not found"})
+                return jsonify({"message": "User not found"})
 
         else:
             return jsonify({"error": "User not logged in"})
 
     except Exception as e:
         return jsonify({"error": str(e)})
+
 
 
 

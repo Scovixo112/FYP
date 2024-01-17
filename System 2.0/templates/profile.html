@@ -124,11 +124,40 @@
     }
 
 
-    // update
-    function editTodo(userId, todoTask) {
-        var updateTask = prompt("Edit the todo task:", "");
+    // // update
+    // function editTodo(userId, todoTask) {
+    //     var updateTask = prompt("Edit the todo task:", "");
 
-        if (updateTask !== null) {
+    //     if (updateTask !== null) {
+    //         // Make an AJAX request to the update_todo route
+    //         fetch('/update_todo', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 "user_id": userId.toString(),  // Ensure user_id is a string
+    //                 "todo_task": todoTask
+    //             })
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             if (data.message) {
+    //                 alert(data.message);
+    //                 window.location.reload();
+    //             } else {
+    //                 console.error('Error:', data.error);
+    //             }
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    //     }
+    // }
+
+    // update
+    function editTodo(userId, oldTodoTask) {
+        var newTodoTask = prompt("Edit the todo task:", "");
+
+        if (newTodoTask !== null) {
             // Make an AJAX request to the update_todo route
             fetch('/update_todo', {
                 method: 'POST',
@@ -137,7 +166,8 @@
                 },
                 body: JSON.stringify({
                     "user_id": userId,
-                    "todo_task": todoTask
+                    "old_todo_task": String(oldTodoTask),  // Convert to string
+                    "new_todo_task": newTodoTask
                 })
             })
             .then(response => response.json())
@@ -152,6 +182,7 @@
             .catch(error => console.error('Error:', error));
         }
     }
+
 
 
 
