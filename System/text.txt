@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="top-box">
+        <a href="{{ url_for('index') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="container">
+            <div class="left-box">
+                <!-- Left box content -->
+                <img src="your-logo.png" alt="Logo">
+                <div class="functions">
+                    <a href="{{url_for('profile')}}">User Profile</a>
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('home') }}" onclick="scrollToTop()">Emergency Call</a>
+                    <a href="#">Community Area</a>
+                    <a href="#">Activity</a>
+                </div>
+            </div>
+
+            <div class="right-box">
+                <h2>User Profile</h2>
+                <form method="post" action="{{ url_for('profile') }}">
+                    {{ form.hidden_tag() }}
+                    <label for="name">Name:</label>
+                    {{ form.name }}
+                    <label for="age">Age:</label>
+                    {{ form.age }}
+                    <label for="gender">Gender:</label>
+                    {{ form.gender }}
+                    <label for="phone_number">Phone Number:</label>
+                    {{ form.phone_number }}
+                    <label for="todo_task">Todo Task:</label>
+                    {{ form.todo_task }}
+                    {{ form.submit(class="btn btn-primary") }}
+                </form>
+                <h4>Information</h4>
+                <p>Name: {{ user_data.get('name', 'N/A') }}</p>
+                <p>Age: {{ user_data.get('age', 'N/A') }}</p>
+                <p>Gender: {{ user_data.get('gender', 'N/A') }}</p>
+                <p>Phone Number: {{ user_data.get('phone_number', 'N/A') }}</p>
+
+                <h4>Todo List</h4>
+                <ul>
+                    {% for task in user_data.get('todo_list', []) %}
+                        <li>{{ task }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Mental Health Status</h4>
+                <p>Latest Test Status: {{ user_data.get('mental_health_status', 'N/A') }}</p>
+
+                <a href="{{ url_for('take_test') }}" class="btn btn-primary">Take New Test</a>
+            </div>
+        </div>
+</body>
+</html>
+
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.top-box {
+    background-color: #eef1f3;
+    padding: 10px;
+    color: #fff;
+    text-align: right;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.horizontal-line {
+    border-top: 1px solid #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.left-box {
+    width: 15%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.left-box img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.functions {
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+
+.functions a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.functions a:hover {
+    background-color: #f0f0f0;
+}
+
+.right-box {
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+</style>
+
+Optimize the right box content
+1) "User Profile" place it to the right box center
+2) Create another box in the right box name it "info-box"
+3) info-box contain user information
+4) "Information" write on the first line and middle of info-box
+5) display Name, Age, Gender, Phone Number which follow each account that connected to mongoDB
+6) Edit function will present as a pen icon and place it at the right top of the info-box
+7) user allow to click on the pen icon to edit or input their information
+8) If user does not input any information then the system will present nothing
+9) All the display will align line by line
+10) end of info-box
