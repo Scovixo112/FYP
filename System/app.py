@@ -37,19 +37,6 @@ class EditProfileForm(FlaskForm):
     submit = SubmitField('Save Changes')
 
 
-#Mental Health Information
-class TakeTestForm(FlaskForm):
-    # Define the fields for the mental health test form, if needed
-    # Example: question1 = StringField('Question 1')
-    question1 = RadioField('1. Have you ever been told by a doctor or other health worker that you have depression?',
-                           choices=[('yes', 'Yes'), ('no', 'No')])
-
-    question2 = RadioField('2. During the last 12 months, have you had a period lasting several days when you felt sad, empty, or depressed?',
-                           choices=[('yes', 'Yes'), ('no', 'No')])
-
-    submit = SubmitField('Submit Test')
-
-
 # Define a form for creating posts
 class CreatePostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
@@ -131,6 +118,31 @@ def home():
     else:
         # Redirect to the login page if not logged in
         return redirect(url_for('index'))
+
+
+@app.route('/activities')
+def activities():
+    return render_template('activities.html')
+
+
+@app.route('/story')
+def story():
+    return render_template('story.html')
+
+
+@app.route('/music')
+def music():
+    return render_template('music.html')
+
+
+@app.route('/sport')
+def sport():
+    return render_template('sport.html')
+
+
+@app.route('/meditation')
+def meditation():
+    return render_template('meditation.html')
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -376,21 +388,26 @@ def delete_todo():
         return jsonify({"error": str(e)})
 
 
-@app.route('/take_test', methods=['GET', 'POST'])
-def take_test():
-    form = TakeTestForm()
 
-    if form.validate_on_submit():
-        # Process the form data, store it in the database, etc.
-        # You can access the user's response using form.question1.data and form.question2.data
-        # For example, print the responses:
-        print(f"Response to Question 1: {form.question1.data}")
-        print(f"Response to Question 2: {form.question2.data}")
+# Update the mental health status route
+@app.route('/update_mental_health_status', methods=['POST'])
+def update_mental_health_status():
+    user_id = request.json.get('user_id')
+    result = request.json.get('result')
 
-        # Redirect to another page or render a confirmation message
-        return redirect(url_for('confirmation'))
+    # Map the radio button values to the desired mental health status
+    mental_health_status_mapping = {
+        'yes': 'Yes, user have symptoms of depression.',
+        'no': 'No, user does not have symptoms of depression.'
+    }
 
-    return render_template('take_test.html', form=form)
+    # Update the mental health status in MongoDB
+    users_collection.update_one(
+        {'_id': ObjectId(user_id)},
+        {'$set': {'mental_health_status': mental_health_status_mapping.get(result, 'N/A')}}
+    )
+
+    return jsonify({'message': 'Mental health status updated successfully'})
 
 
 # New route for updating emergency contact from home page

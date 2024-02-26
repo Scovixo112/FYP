@@ -22,8 +22,8 @@
                     <a href="{{url_for('profile')}}">User Profile</a>
                     <a href="{{ url_for('home') }}">Home</a>
                     <a href="{{ url_for('home') }}" onclick="scrollToTop()">Emergency Call</a>
-                    <a href="#">Community Area</a>
-                    <a href="#">Activity</a>
+                    <a href="{{ url_for('community_area')}}">Community Area</a>
+                    <a href="{{ url_for('activities')}}">Activities</a>
                 </div>
             </div>
 
@@ -79,12 +79,49 @@
                     </form>
                 </div>
                 
-                <h4 class="text-center">Mental Health Status</h4>
-                
+
                 <!-- Style of Mental Health Status under TODO List -->
                 <div class="mental-health-status">
-                    <p>Latest Test Status: {{ user_data.get('mental_health_status', 'N/A') }}</p>
-                    <a href="{{ url_for('take_test') }}" class="btn btn-primary">Take New Test</a>
+                    <h4 class="text-center">Mental Health Status</h4>
+                    {% if user_data and user_data.get('mental_health_status') %}
+                        <p>Latest Test Status: {{ user_data['mental_health_status'] }}</p>
+                    {% else %}
+                        <p>Latest Test Status: N/A</p>
+                    {% endif %}
+                
+                    <button class="btn btn-primary" onclick="showOptInMessage()">Take New Test</button>
+                </div>
+                
+                <!-- Opt-In Message -->
+                <div id="optInMessage" class="opt-in-message" style="display: none;">
+                    <div class="popup-box">
+                        <span class="close-icon" onclick="closePopup()">&#10006;</span>
+                        <p>This depression self-assessment tool is provided by the World Health Organization (WHO).
+                            <br>This test does not determine your true psychological state. It only provides suggestions based on your answers.
+                            <br>It does not represent or have the medical expertise to judge the results of your mental state and whether you are a patient with depression.
+                        </p>
+                        <p>Do you agree to proceed?</p>
+                            <input type="radio" id="agreeYes" name="optInRadio" value="yes">
+                            <label for="agreeYes">Yes, I agree</label>
+                        <div class="btn-container">
+                            <button class="btn btn-primary" onclick="openAssessment()">Proceed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Selection Popup -->
+                <div id="resultPopup" class="result-popup" style="display: none;">
+                    <div class="popup-box">
+                        <p>Please submit your result:</p>
+                        <input type="radio" id="resultYes" name="resultRadio" value="yes">
+                        <label for="resultYes">Yes, you have symptoms of depression. Please consult with your health care provider.</label>
+                        <br><br>
+                        <input type="radio" id="resultNo" name="resultRadio" value="no">
+                        <label for="resultNo">No, you does not have symptoms of depression.</label>
+                        <div class="btn-container">
+                            <button class="btn btn-primary" onclick="saveResult()">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -220,8 +257,6 @@
 
 
 
-
-
     // Fetch and display todos when the page loads
     document.addEventListener('DOMContentLoaded', function() {
         fetch('/retrieve_todos')
@@ -245,6 +280,65 @@
             })
             .catch(error => console.error('Error:', error));
     });
+
+
+    function showOptInMessage() {
+        document.getElementById('optInMessage').style.display = 'flex';
+    }
+
+    function openAssessment() {
+        if (document.getElementById('agreeYes').checked) {
+            window.open('https://worldhealthorg.shinyapps.io/steps_depression_tool/', '_blank');
+            document.getElementById('optInMessage').style.display = 'none';
+            document.getElementById('resultPopup').style.display = 'flex';
+        } else {
+            alert('Please agree to proceed.');
+        }
+    }
+
+
+    function saveResult() {
+        var resultValue = document.querySelector('input[name="resultRadio"]:checked').value;
+
+        // Make an AJAX request to update mental health status in MongoDB
+        fetch('/update_mental_health_status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "user_id": "{{ user_data['_id'] }}",
+                "result": resultValue
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                window.location.reload();
+
+                // Update the mental health status displayed on the page
+                var statusElement = document.getElementById('mentalHealthStatus');
+                if (resultValue === 'yes') {
+                    statusElement.innerHTML = 'Yes, user have symptoms of depression.';
+                } else if (resultValue === 'no') {
+                    statusElement.innerHTML = 'No, user does not have symptoms of depression.';
+                } else {
+                    statusElement.innerHTML = 'N/A';
+                }
+
+            } else {
+                console.error('Error:', data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+
+    function closePopup() {
+        document.getElementById('optInMessage').style.display = 'none';
+        document.getElementById('resultPopup').style.display = 'none';
+    }
 </script>
 
 </html>
@@ -414,4 +508,41 @@
         background-color: #0056b3;
     }
 
+    .opt-in-message,
+    .result-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .popup-box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+        text-align: left;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-top: auto;
+    }
 </style>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <!-- Include Socket.IO client library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="top-box">
+        <a href="{{ url_for('index') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="left-box">
+            <!-- Left box content -->
+            <img src="your-logo.png" alt="Logo">
+            <div class="functions">
+                <a href="{{ url_for('profile' )}}">User Profile</a>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()">Emergency Call</a>
+                <a href="{{ url_for('community_area') }}">Community Area</a>
+                <a href="{{ url_for('activities')}}">Activities</a>
+            </div>
+        </div>
+
+        <!-- Right box content -->
+        <div class="right-box">
+            <div id="story-area-title">Story Area</div>
+
+            <!-- Rectangle Boxes -->
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Survivors: Stories & Strategies to Heal the Hurt</div>
+                        <div>In this book, John Preston gives the reader a kind of “advance map of the territory” to help prepare for the journey of living through emotional pain. He’s written this book to share some of what has been learned about human emotions and emotional healing, to separate fact from fiction. (There’s a lot of fiction out there these days!) The material in this book comes from numerous sources but is drawn primarily from a large body of sound scientific research in psychology. It will help you more fully understand human emotional reactions and, perhaps more important, to look very specifically at ways to help yourself get through difficult times. And, along the way, you’ll see how each of four people — like you, human beings with the capacity to heal — took action that helped them to deal with and grow beyond their emotional pain.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/survivors-stories-strategies-to-heal-the-hurt/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image2.jpg" alt="Story Image 2" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Living with Chronic Depression:A Rehabilitation Approach</div>
+                        <div>This may be the first book stating the blunt truth that some depressions constitute a life-changing disability. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/living-with-chronic-depressiona-rehabilitation-approach/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image3.jpg" alt="Story Image 3" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Mourning and Melancholia</div>
+                        <div>Freud’s classic work on Depression from Essential Papers on Depression</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/mourning-and-melancholia/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image3.jpg" alt="Story Image 3" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">A Dictionary for Psychotherapists</div>
+                        <div>“In the Chessick Dictionary psychotherapists will find at last a rich compendium of essays—some measured in paragraphs, some in pages—that in the aggregate give direction to appreciating the protean contours of our discipline. Both the student and the experienced practitioner will find the Dictionary invaluable.
+
+                            Beyond scholarship and integrity, an author who undertakes the preparation of a dictionary, any dictionary, requires compassionate regard for the reader. Chessick knows this, possesses the capacity for it, and does succeed in engaging the reader one-to-one. He declines the role of the anonymous expert’s prescribing what is and what is not correct usage. Quite the contrary, Chessick affirms a personal presence, venturing his views—never arrogating the voice of the unseen, unmoved, unnamed, authorial majesty.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/a-dictionary-for-psychotherapists/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Toward an Interactional Description of Depression</div>
+                        <div>Depression is conceptualized here as a self-perpetuating interpersonal system. Depressive symptomatology is congruent with the developing interpersonal situation of the depressed person, and the symptoms have a mutually maintaining relationship with the response of the social environment. Essentially, the depressed person and others within his social space collude to create a system in which feedback cannot be received, and various efforts to change become system-maintaining (61 pgs).</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/toward-an-interactional-description-of-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Masked Depression and Depressive Equivalents</div>
+                        <div>The subject of masked depression and depressive equivalents presents us with a paradox: In spite of the frequency of the syndrome, only a relative handful of clinicians have a meaningful awareness or understanding of it. The depressive affect and even many depressive syndromes may be so masked that a nonpsychiatric or even psychiatric physician may be unaware of the fact that a serious emotional disorder is at hand until a massive, full-blown depression erupts and dominates the clinical scene.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/masked-depression-and-depressive-equivalents/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Grief and Bereavement</div>
+                        <div>The average human being has the task of finding a midpoint between denial of death and obsessive fear of the dying process. Health professionals have addressed themselves to assistance to the dying patient and his family, as well as rehabilitation. This essay covers the pathology of mourning, the mourning process, denial in loss, loss of a parent, and the anticipatory mourning of the dying patient. Every therapist has to develop skills in dealing with these matters.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/grief-and-bereavement/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Existential Approaches to Depression</div>
+                        <div>The existential viewpoint brings scope, depth of field, and clarity to the appreciation of the human situation. It informs our understanding and treatment of psychopathology in general, depressions in particular. Among the strengths of the existentialist stance are: a concern for individuals and their view of their particular circumstances, the realization that the individual is on a life long quest in which transcendence over local circumstances is natural, and acceptance of dread and despair as emotions which attend, motivate and inform actions that determine direction. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/existential-approaches-to-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Psychotherapy of Mild Depression</div>
+                        <div>- Brief Survey of the Literature
+                            <br> - Initial Stage: Setting the Proper Course of Therapy</br>
+                                 - Middle Stage of Therapy: Working Through
+                            <br> - Final Stage of Therapy</br>
+                        </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/psychotherapy-of-mild-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">A Self-Control Model of Depression</div>
+                        <div>This paper outlines a behavioral self-control model for the study of depression. Contemporary models focus on different subsets of depressive phenomena. The self-control model organizes and relates these phenomena and has its own implications for symptomatology, etiology, and therapy.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/a-self-control-model-of-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Symptoms, Prevention, and Treatment of Attempted Suicide</div>
+                        <div>We now recognize that children and adolescents can and do commit suicide. We are destroying ourselves at ever increasing rates and and in ever increasing numbers by homicide and suicide and we are threatened by total global destruction with nuclear weapons of our own making. The answers of individual and global self-destruction still elude us.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/symptoms-prevention-and-treatment-of-attempted-suicide/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Level of Depression</div>
+                        <div>This essay is concerned with the phenomenology and overt behavioral and psychological manifestations of the different types or “levels” of depressive psychopathology. The history of the unitary vs. dual disorder controversy is reviewed, as are current studies which attempt to test the utility of nosological work and to validate or disprove the commonly accepted differentiation of depression into such levels as neurotic-reactive , endogenous-psychotic, and characterological.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/levels-of-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Interpersonal Psychotherapy for Depression</div>
+                        <div>Interpersonal psychotherapy is based on the observation that major depression usually occurs in an interpersonal context, often an interpersonal loss or dispute. By clarifying, refocusing and renegotiating the interpersonal context associated with the onset of the depression, the depressed patient’s symptomatic recovery may be accelerated and the social morbidity reduced. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/interpersonal-psychotherapy-for-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Depression and Mourning</div>
+                        <div>In the consideration of depression and mourning in childhood, the major question is not whether these reactions and processes are the same as for adults. They are not. The major question is whether it is productive, recognizing the dynamic maturational and developmental continuum that is encompassed, to use the same terms and to establish connections between these childhood and adult conditions.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/depression-and-mourning/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">The Brave New World of Antidepressants:No Need to Grieve</div>
+                        <div>Today’s prevailing model of depression is that it results from an imbalance of neurotransmitters serotonin, norepinephrine and dopamine. This e-book argues that depression is best viewed as a pathological form of grief response. This has profound implications for clinical practice. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/the-brave-new-world-of-antidepressantsno-need-to-grieve/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Severe and Mild Depression</div>
+                        <div>This is an original view of the causes and treatment of depression. While not denying the contribution of constitutional and biochemical factors, the authors focus on the psychodynamics and psychotherapy of this widespread disorder. The book is devoted to psychotherapy of all states and includes separate chapters on therapy for postpartum depression, and involuntary melancholia. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/severe-and-mild-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">A Primer on Working with Resistance</div>
+                        <div>“Martha Stark’s primer on resistance is a unique book. It takes as the heart of the clinical problem the patient’s reluctance to change, that ubiquitous and paradoxical phenomenon of our work in which people come to us asking for help in changing, and then do their level best to keep change from happening… This is a work which is at once a practical guide and a theoretical tour de force. Readers who journey in this slim volume with Dr. Stark will return from their travels to their practice much educated, having encountered new ideas and old ones in new forms, better able to face the everyday travails of psychotherapy.”</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/a-primer-on-working-with-resistance/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Psychotherapy of Severe Depression</div>
+                        <div>For major therapeutic approaches are available for the treatment of severe depression: psychotherapy, drug therapy, shock therapy, and hospitalization milieu therapy. Indications for psychotherapy exist in every case of primary severe depression. The intensity should not deter the therapist from making psychotherapeutic attempts. Concomitant drug therapy does not make the patient less accessible to psychotherapy.
+
+                            Choice of Treatment
+                            Beginning of Psychotherapy
+                            Therapy of the Patient with a Pattern of Submission to the Dominant Other
+                            The Treatment of Claiming Depression
+                            Treatment of Depression Following Failure to Reach the Dominant Goal, and of Depression with Mixed Patterns
+                            Advanced Stage of Treatment
+                        </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/psychotherapy-of-severe-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Psychotherapy of Depression During the Middle Years</div>
+                        <div>What sooner or later emerges is the symbolic importance of having reached the middle years, the menopause, or the climacterium. A recurring theme is that life has come, or is about to come, to an end.
+
+                            - Specific Psychodynamics in the Middle Years
+                            - Psychotherapy
+                            - Case Reports
+                        </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/survivors-stories-strategies-to-heal-the-hurt/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Depressive Disorders: Facts, Theories, and Treatment</div>
+                        <div>“In 20 very substantive chapters written by 26 outstanding authors, this volume spans three general areas: theories of depression, symptomatology of the depressive syndrome, and clinical treatments for affective disorders. Each section is highly informative and broadly representative of the field. Behavioral, cognitive, psychoanalytic, interpersonal, biological, and genetic perspectives are all well-represented. Even more exceptional, perhaps, is that almost every chapter is remarkably evenhanded and thorough…A valuable contribution to the field. Having coordinated and constructed broad-minded yet discerning review of so many aspects of depression, these editors and authors provide numerous opportunities for the reader to explore and integrate wide-ranging perspectives on affective disorders. Students, faculty, and professionals alike would do well to add this book to their personal libraries.”
+                            —Contemporary Psychology</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/depressive-disorders-facts-theories-and-treatment/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">The Case of the Wolf Man</div>
+                        <div>We are gathered here to study together what is the most famous and perhaps most instructive of Freud’s cases in the history of psychoanalysis, the analysis of Sergej Konstantinovich Pankejev, who went down in history under the sobriquet “The Wolf Man.”  Certainly in this case history we find some of the core ideas of psychoanalysis. But they are difficult notions, sometimes even obscure.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/the-case-of-the-wolf-man/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Drama in Mental Health</div>
+                        <div>Dr. Scharff explains how drama and role-playing can be utilized both by medical and mental health practitioners in training, and by patients in the therapy setting. Medical students and therapists can engage in role-play with actors playing the part of patients with medical conditions to be assessed, in this way developing diagnostic acuity and clinical presence for the day when they will be allowed to work with patients. Drama helps patients in therapy encounter their difficulties in an “as if” setting where it is safe to learn from mistakes, explore conflict, and learn from the point of view of others. Drama prepares us to adapt to social change and empowers disadvantaged communities to represent themselves and fight for better conditions. Creative drama in particular affords industrious and imaginate experience that facilitates personal development such that men and women can fulfill their potential for spontaneous and creative living.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/drama-in-mental-health/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Working the Organizing Experience</div>
+                        <div>Hedges introduces the term the organizing experience to chart the course of early trauma to its impact on adult living and the transference situation. He describes the infant’s primary life task as organizing Chanels to the human nurturing environment—first physiological connections to the mother and others. During the organizing experience, inevitable traumas leave memory traces that affect subsequent interpersonal relationships. Even if the infant has the good fortune to be born healthy and into an optimal family environment, he or she must endure intense moments of needing and desiring that are not or cannot be responded to in the exact ways or in the precise time frames the infant needs to maintain a sense of internal harmony and continuity. What then becomes conditioned during the organizing period is a terror and avoidance of certain kinds of interpersonal connections or situations because the infant initially found them traumatizing.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/working-the-organizing-experience/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Understanding Life Backward but Living Life Forward</div>
+                        <div>Martha Stark’s most recent – and 9th – book features an action-based, solution-focused, future-oriented psychodynamic model that conceives of the mind as holding infinite potential and of memory as dynamic and continuously updating itself on the basis of new experience (whether real or simply envisioned).</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/understanding-life-backward-but-living-life-forward/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Between Two Worlds: Aspects of the Transition from School to Work</div>
+                        <div>Between Two Worlds focuses on the dilemma of the non-academic adolescent through close work with schools, and a large number of clinical interviews with children and their families of those who were on track to leave school at the earliest legal opportunity. The book is saturated with a psychoanalytic developmental perspective that illuminates the challenges facing these non-academic children and their families as they face the wider world.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/between-two-worlds-aspects-of-the-transition-from-school-to-work/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">A Behavioral Approach to Depression</div>
+                        <div>The purpose of this paper is threefold: (1) to explicate the major theoretical assumptions and premises that have been guiding the design of our research, (2) to present our empirical findings, which are consistent with these assumptions, and (3) to describe studies now in progress that are designed to test hypotheses about the relationship between positive reinforcement and depression.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/a-behavioral-approach-to-depression/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Negative Practice</div>
+                        <div>Negative Practice is a behavior therapy technique. It consists of having a client actively and deliberately repeat an undesirable, “automatic,” “involuntary” habit — such as a tic, nail biting, or stammering — while paying careful attention to the behavior being practiced. The goal of negative practice is to become more aware of the habit and, ultimately, to reduce the habit. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/negative-practice/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Information Feedback</div>
+                        <div>Information Feedback is a set of procedures developed to facilitate people’s ability to scan, actively and objectively, their own perceptions and behavior, and to trace the impact of these on their interpersonal interactions. The approach is based on the assumption that much behavior that is ineffective for the self, or noxious for others, results from habituated attitudes of nonattention to the interpersonal arena, learning to attend, in new ways, produces new information that opens up opportunities for new behavioral choices.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/information-feedback/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Goal-Directed Psychotherapy</div>
+                        <div>Goal-Directed Psychotherapy is a coordinated effort to effect limited changes in specific behavioral responses. This effort utilizes those cognitive, conative (the faculty of striving, making an effort), or affective (dealing with moods or emotions) components of mental functioning that are available in any individual or group of individuals</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/goal-directed-psychotherapy/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Behavior Therapy for Adults</div>
+                        <div>Idealized, behavior therapy applies the laws of learning and conditioning as developed in the laboratory, to the alleviation of human maladjustment. In addition, there is a diversity of procedure and an inventive flexibility in adapting psychological technology particularly into cognitive manipulation, use of fantasy, and instructional control. </div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/behavior-therapy-for-adults/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">A Perilous Calling: The Hazards of Psychotherapy Practice</div>
+                        <div>Throughout the pages of this fascinating book, nearly thirty psychotherapists—including psychologists, psychiatrists, psychoanalysts, and social workers—provide intimate, at times painfully frank, accounts of their inner experiences and struggles. In a series of compelling first-person narratives, written in a variety of styles, they explore such topics as the therapist’s personal development and unconscious motivations for becoming a therapist, the emotional impact of clinical work on the psychotherapist.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/a-perilous-calling-the-hazards-of-psychotherapy-practice/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <img src="story_image1.jpg" alt="Story Image 1" class="box-image">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">Who's the Patient Here?</div>
+                        <div>Written and illustrated by two psychiatrists-in-training, this book is a cartoon guide to the variety of feelings commonly experienced by beginning psychotherapists and other helping professionals, be they psychiatrists, social workers, counselors, teachers, bartenders, or cab drivers. The various defensive and evasive maneuvers trainees learn to use in order to deal with the complexities and demands of the therapeutic relationships often cause them to feel guilty. They discuss these maneuvers only with great difficulty. The disillusionment of idealistic beginners can end in cynicism and despair or kit can find a middle ground of informed humanism. This witty book gives a sympathetic and insightful view of their anxieties. The authors point out the commonness, necessity, and even therapeutic value of these training experiences. The book also explores the complicated relationship between institutions, supervisors, therapists, and patients and raises important questions about the training of psychotherapists. Here is a fresh and candid view that anyone entering the helping professions will appreciate and that is certain to interest anyone undergoing psychotherapy.</div>
+
+                        <a href="https://www.freepsychotherapybooks.org/ebook/whos-the-patient-here/" target="_blank">For whole story book. Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .top-box {
+        background-color: #eef1f3;
+        padding: 10px;
+        color: #fff;
+        text-align: right;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+
+    .horizontal-line {
+        border-top: 1px solid #fff;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px;
+    }
+
+    .left-box {
+        width: 15%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .left-box img {
+        max-width: 100%;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    .functions {
+        border-right: 1px solid #ccc;
+        padding-right: 20px;
+    }
+
+    .functions a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+        padding: 10px 0;
+    }
+
+    .functions a:hover {
+        background-color: #f0f0f0;
+    }
+
+    .right-box {
+        width: 80%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #story-area-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .rectangle-box {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .box-content {
+        display: flex;
+        align-items: center;
+        text-align: justify;
+    }
+
+    .box-image {
+        max-width: 40%;
+        border-radius: 8px;
+        margin-right: 10px;
+    }
+
+    .vertical-line {
+        height: 100%;
+        width: 1px;
+        background-color: #ccc;
+        margin: 0 10px;
+        position: relative;  /* needs to be correct */
+    }
+
+    .box-title-content {
+        flex-grow: 1;
+    }
+
+    .box-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 8px;
+    }
+
+    .box-text {
+        max-width: 60%;
+    }
+
+    .box-title-content::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background-color: #ccc;
+        top: 0;
+        right: 0;
+    }
+
+    .rectangle-box {
+        /* Your existing styles for rectangle-box */
+        transition: background-color 0.3s; /* Add a smooth transition for color change */
+    }
+
+    .rectangle-box:hover {
+        background-color: #ccc; /* Change to your desired hover color */
+    }
+</style>
+
