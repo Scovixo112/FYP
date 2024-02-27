@@ -53,6 +53,7 @@ class CreateCommentForm(FlaskForm):
 def index():
     return render_template('login.html')
 
+
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
@@ -65,9 +66,9 @@ def login():
         # Debugging statements
         print(f"Login successful for {email}")
 
-        # Successful login, store user in session and redirect to home page
-        # use session to store the user's login status
-        session['email'] = email
+        # Successful login, store user ID in session and redirect to home page
+        session['user_id'] = str(user['_id'])  # Convert ObjectId to string for session storage
+        print(f"User ID stored in session: {session['user_id']}")
         return redirect(url_for('home'))
     else:
         # Debugging statements
@@ -76,9 +77,11 @@ def login():
         # Failed login, redirect back to the login page with an error message
         return render_template('login.html', error='Invalid email or password')
 
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -389,6 +392,41 @@ def delete_todo():
 
 
 
+# Route to retrieve mental health status history
+@app.route('/get_mental_health_history', methods=['GET'])
+def get_mental_health_history():
+    # Assuming user_id is stored in the session or provided in some way
+    user_id = session.get('user_id')
+
+    # Retrieve the user's mental health status history from MongoDB
+    user_data = users_collection.find_one({'_id': ObjectId(user_id)})
+
+    if user_data:
+        history = user_data.get('mental_health_history', [])
+
+        # Display all available entries if less than 10, otherwise display the latest 10
+        history_to_display = history if len(history) < 10 else history[-10:]
+
+        # Format timestamps for display
+        formatted_history = []
+
+        for entry in history_to_display:
+            timestamp = entry['timestamp']
+
+            # Check if the timestamp is a float (assumed to be Unix timestamp)
+            if isinstance(timestamp, float):
+                formatted_time = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+            else:
+                # If timestamp is a string, directly use it
+                formatted_time = timestamp
+
+            formatted_history.append({'status': entry['status'], 'time': formatted_time})
+
+        return jsonify({'history': formatted_history})
+    else:
+        return jsonify({'history': []})
+
+
 # Update the mental health status route
 @app.route('/update_mental_health_status', methods=['POST'])
 def update_mental_health_status():
@@ -397,7 +435,7 @@ def update_mental_health_status():
 
     # Map the radio button values to the desired mental health status
     mental_health_status_mapping = {
-        'yes': 'Yes, user have symptoms of depression.',
+        'yes': 'Yes, user has symptoms of depression.',
         'no': 'No, user does not have symptoms of depression.'
     }
 
@@ -405,6 +443,13 @@ def update_mental_health_status():
     users_collection.update_one(
         {'_id': ObjectId(user_id)},
         {'$set': {'mental_health_status': mental_health_status_mapping.get(result, 'N/A')}}
+    )
+
+    # Add the current result to the user's mental health status history
+    timestamp = datetime.now().strftime('%y-%m-%d-%H-%M-%S')  # Format timestamp as YY-MM-DD-HH-MM-SS
+    users_collection.update_one(
+        {'_id': ObjectId(user_id)},
+        {'$push': {'mental_health_history': {'status': mental_health_status_mapping.get(result, 'N/A'), 'timestamp': timestamp}}}
     )
 
     return jsonify({'message': 'Mental health status updated successfully'})

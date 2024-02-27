@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
 
     <title>User Profile</title>
 </head>
@@ -80,15 +83,15 @@
                 </div>
                 
 
-                <!-- Style of Mental Health Status under TODO List -->
+                <!--Mental Health Status-->
                 <div class="mental-health-status">
                     <h4 class="text-center">Mental Health Status</h4>
+                    <i id="report-icon" class="far fa-file" onclick="showHistory()"> History</i>
                     {% if user_data and user_data.get('mental_health_status') %}
                         <p>Latest Test Status: {{ user_data['mental_health_status'] }}</p>
                     {% else %}
                         <p>Latest Test Status: N/A</p>
                     {% endif %}
-                
                     <button class="btn btn-primary" onclick="showOptInMessage()">Take New Test</button>
                 </div>
                 
@@ -121,6 +124,17 @@
                         <div class="btn-container">
                             <button class="btn btn-primary" onclick="saveResult()">Submit</button>
                         </div>
+                    </div>
+                </div>
+
+                <!-- History Popup -->
+                <div id="historyPopup" class="history-popup" style="display: none;">
+                    <div class="popup-box">
+                        <span class="close-icon" onclick="closeHistoryPopup()">&#10006;</span>
+                        <h4 class="text-center">Mental Health Status History</h4>
+                        <ul id="historyList">
+                            <!-- History items will be dynamically added here -->
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -159,69 +173,6 @@
 
         return false; // Prevent the form from submitting in the traditional way
     }
-
-
-    // // update
-    // function editTodo(userId, todoTask) {
-    //     var updateTask = prompt("Edit the todo task:", "");
-
-    //     if (updateTask !== null) {
-    //         // Make an AJAX request to the update_todo route
-    //         fetch('/update_todo', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 "user_id": userId.toString(),  // Ensure user_id is a string
-    //                 "todo_task": todoTask
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data.message) {
-    //                 alert(data.message);
-    //                 window.location.reload();
-    //             } else {
-    //                 console.error('Error:', data.error);
-    //             }
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    //     }
-    // }
-
-    // update
-    // function editTodo(userId, oldTodoTask) {
-    //     var newTodoTask = prompt("Edit the todo task:", "");
-
-    //     if (newTodoTask !== null) {
-    //         // Make an AJAX request to the update_todo route
-    //         fetch('/update_todo', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 "user_id": userId,
-    //                 "old_todo_task": String(oldTodoTask),  // Convert to string
-    //                 "new_todo_task": newTodoTask
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data.message) {
-    //                 alert(data.message);
-    //                 window.location.reload();
-    //             } else {
-    //                 console.error('Error:', data.error);
-    //             }
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    //     }
-    // }
-
-
-
 
 
     // delete
@@ -339,6 +290,39 @@
         document.getElementById('optInMessage').style.display = 'none';
         document.getElementById('resultPopup').style.display = 'none';
     }
+
+
+    function showHistory() {
+        // Fetch and display mental health status history when the user clicks on the report icon
+        fetch('/get_mental_health_history')
+            .then(response => response.json())
+            .then(data => {
+                const historyList = document.getElementById('historyList');
+                historyList.innerHTML = ''; // Clear previous history
+
+                if (data.history.length > 0) {
+                    data.history.forEach(entry => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${entry.status} - ${entry.time}`;
+                        historyList.appendChild(listItem);
+                    });
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = 'No history available.';
+                    historyList.appendChild(listItem);
+                }
+
+                document.getElementById('historyPopup').style.display = 'flex';
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+    function closeHistoryPopup() {
+        document.getElementById('historyPopup').style.display = 'none';
+    }
+
+
 </script>
 
 </html>
@@ -487,7 +471,17 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
         margin-top: 20px;
         text-align: left;
+        position: relative;
     }
+
+    /* .mental-health-status #report-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #007bff;
+    } */
 
     .mental-health-status p {
         margin-bottom: 10px;
@@ -545,4 +539,19 @@
         align-items: flex-end;
         margin-top: auto;
     }
+
+    #report-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #007bff;
+    }
+
+    .report-icon i {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+
 </style>
