@@ -4,12 +4,18 @@ from wtforms import RadioField, StringField, SubmitField, TextAreaField
 from pymongo import MongoClient
 from wtforms.validators import DataRequired
 from bson import ObjectId
-from flask_socketio import SocketIO
 from datetime import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from flask_bcrypt import Bcrypt
+from flask_mail import Mail
+
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
+mail = Mail(app)
 app.secret_key = 'S\x92z\xe7\x1e\x8b\x87+\x95E\x10\x8d\xf2\xf3bM'
-socketio = SocketIO(app)
 
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://qianerlee:826455@cluster0.gg05xge.mongodb.net/')
@@ -22,7 +28,7 @@ posts_collection = db['posts']
 class UserProfileForm(FlaskForm):
     name = StringField('Name')
     age = StringField('Age')
-    gender = StringField('Gender')
+    gender = RadioField('Gender', choices=[('male', 'Male'), ('female', 'Female')], validators=[DataRequired()])
     phone_number = StringField('Phone Number')
     todo_task = StringField('Todo Task')
     submit = SubmitField('Save Changes')
@@ -32,7 +38,7 @@ class UserProfileForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     age = StringField('Age', validators=[DataRequired()])
-    gender = StringField('Gender', validators=[DataRequired()])
+    gender = RadioField('Gender', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
     phone_number = StringField('Phone Number', validators=[DataRequired()])
     submit = SubmitField('Save Changes')
 
@@ -57,24 +63,20 @@ def index():
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
-    password = request.form['password']
+    entered_password = request.form['password']
 
-    # Check if the email is in the users collection and the password matches
-    user = users_collection.find_one({'email': email, 'password': password})
+    # Check if the email is in the users collection
+    user = users_collection.find_one({'email': email})
 
-    if user:
-        # Debugging statements
-        print(f"Login successful for {email}")
-
-        # Successful login, store user ID in session and redirect to home page
-        session['user_id'] = str(user['_id'])  # Convert ObjectId to string for session storage
-        print(f"User ID stored in session: {session['user_id']}")
+    if user and (bcrypt.check_password_hash(user['password'], entered_password) or user['password'] == entered_password):
+        # Successful login
+        session['email'] = email
+        # Store the user's email and user_id in the session
+        session['user_email'] = email
+        session['user_id'] = str(user['_id'])  # Convert ObjectId to string
         return redirect(url_for('home'))
     else:
-        # Debugging statements
-        print(f"Login failed for {email}")
-
-        # Failed login, redirect back to the login page with an error message
+        # Failed login
         return render_template('login.html', error='Invalid email or password')
 
 
@@ -88,20 +90,20 @@ def register():
     email = request.form['email']
     password = request.form['password']
 
-    # Check if the email is already taken
-    existing_user = users_collection.find_one({'email': email})
+    # Hash the password before storing it
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-    if existing_user:
-        return render_template('signup.html', error='User already exists')
-
-    # Add the new user to the users collection
-    users_collection.insert_one({'email': email, 'password': password})
+    # Add the new user to the users collection with the hashed password
+    users_collection.insert_one({'email': email, 'password': hashed_password})
 
     # Debugging statements
     print(f"User registered: {email}")
 
     # Log in the new user and redirect to the home page
     session['email'] = email
+    # Store the user's email in the session
+    session['user_email'] = email
+
     return redirect(url_for('home'))
 
 
@@ -179,7 +181,7 @@ def profile():
         return redirect(url_for('index'))
 
 
-# New route for editing user information
+# route for editing user information
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
     # Check if the user is logged in
@@ -193,16 +195,30 @@ def edit_profile():
         form = EditProfileForm(obj=user_data)
 
         if form.validate_on_submit():
-            # Update user data in MongoDB
-            users_collection.update_one({'email': email}, {'$set': {
-                'name': form.name.data,
-                'age': form.age.data,
-                'gender': form.gender.data,
-                'phone_number': form.phone_number.data,
-            }})
+            try:
+                # Update user data in MongoDB
+                update_result = users_collection.update_one({'email': email}, {'$set': {
+                    'name': form.name.data,
+                    'age': form.age.data,
+                    'gender': form.gender.data,
+                    'phone_number': form.phone_number.data,
+                }})
 
-            # Redirect to the profile page after saving changes
-            return redirect(url_for('profile'))
+                if update_result.modified_count > 0:
+                    flash('Profile updated successfully', 'success')
+                else:
+                    flash('No changes made to the profile', 'info')
+
+                # Redirect to the profile page after saving changes
+                return redirect(url_for('profile'))
+
+            except Exception as e:
+                flash(f'Error updating profile: {str(e)}', 'danger')
+
+        # Print debug information
+        print("Form errors:", form.errors)
+        print("Form data:", form.data)
+        print("User data from MongoDB:", user_data)
 
         return render_template('edit_profile.html', form=form, user_data=user_data)
 
@@ -258,104 +274,6 @@ def retrieve_todos():
         return jsonify({"error": str(e)})
 
 
-# # New route for updating a todo
-# @app.route('/update_todo', methods=['POST'])
-# def update_todo():
-#     try:
-#         # Check if the user is logged in
-#         print("Reached update_todo route")
-
-#         if 'email' in session:
-#             email = session['email']
-
-#             # Get data from the request
-#             data = request.get_json()
-#             user_id = data.get('user_id')
-#             todo_task = data.get('todo_task')
-
-#             print(f"Received data - user_id: {user_id}, todo_task: {todo_task}")
-
-#             # Fetch user data from MongoDB
-#             user_data = users_collection.find_one({'_id': ObjectId(user_id)})
-
-#             print("User data from MongoDB:", user_data)
-
-#             if user_data:
-#                 # Update the specified todo in the user's todo list
-#                 todo_list = user_data.get('todo_list', [])
-#                 updated = False
-
-#                 # Iterate through the array using index
-#                 for i, todo in enumerate(todo_list):
-#                     if i == int(user_id):
-#                         todo['todo_task'] = todo_task
-#                         updated = True
-#                         break
-
-#                 # If the todo was updated, update user data in MongoDB
-#                 if updated:
-#                     users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
-#                     return jsonify({"message": "Todo updated successfully"})
-#                 else:
-#                     return jsonify({"message": "Todo not found"})
-#             else:
-#                 return jsonify({"message": "User not found"})
-
-#         else:
-#             return jsonify({"error": "User not logged in"})
-
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
-
-
-# New route for updating a todo
-# @app.route('/update_todo', methods=['POST'])
-# def update_todo():
-#     try:
-#         # Check if the user is logged in
-#         if 'email' in session:
-#             email = session['email']
-
-#             # Get data from the request
-#             data = request.get_json()
-#             user_id = data.get('user_id')
-#             old_todo_task = data.get('old_todo_task')  # Add a field for the old todo_task
-#             new_todo_task = data.get('new_todo_task')
-
-#             # Fetch user data from MongoDB
-#             user_data = users_collection.find_one({'_id': ObjectId(user_id)})
-
-#             if user_data:
-#                 # Update the specified todo in the user's todo list
-#                 todo_list = user_data.get('todo_list', {})
-#                 updated = False
-
-#                 # Iterate through the dictionary using keys
-#                 for key in todo_list:
-#                     if str(key) == old_todo_task:  # Convert the key to string for comparison
-#                         todo_list[key] = new_todo_task  # Update the todo_task
-#                         updated = True
-#                         break
-
-
-#                 # If the todo was updated, update user data in MongoDB
-#                 if updated:
-#                     users_collection.update_one({'_id': ObjectId(user_id)}, {'$set': {'todo_list': todo_list}})
-#                     return jsonify({"message": "Todo updated successfully"})
-#                 else:
-#                     return jsonify({"message": "Todo not found"})
-#             else:
-#                 return jsonify({"message": "User not found"})
-
-#         else:
-#             return jsonify({"error": "User not logged in"})
-
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
-
-
-
-
 # New route for deleting a todo
 @app.route('/delete_todo', methods=['POST'])
 def delete_todo():
@@ -395,7 +313,7 @@ def delete_todo():
 # Route to retrieve mental health status history
 @app.route('/get_mental_health_history', methods=['GET'])
 def get_mental_health_history():
-    # Assuming user_id is stored in the session or provided in some way
+    # user_id is stored in the session
     user_id = session.get('user_id')
 
     # Retrieve the user's mental health status history from MongoDB
@@ -473,8 +391,12 @@ def update_emergency_contact_home():
                     'name': data.get('name'),
                     'gender': data.get('gender'),
                     'emergency_phone': data.get('emergency_phone'),
+                    'emergency_email': data.get('emergency_email'),
                 }
             }})
+
+            # Update the user's email in the session
+            session['user_email'] = email
 
             # Fetch updated emergency contact data
             updated_emergency_contact = users_collection.find_one({'_id': user_id}, {'emergency_contact': 1})['emergency_contact']
@@ -494,27 +416,125 @@ def get_user_info():
     if 'email' not in session:
         return jsonify({'error': 'User not logged in'}), 401
 
-    # Retrieve the name from the session
+    # Retrieve the email from the session
     email = session['email']
 
-    # Query MongoDB to retrieve user information based on the name
+    # Query MongoDB to retrieve user information based on the email
     user_data = users_collection.find_one({'email': email})
 
     if user_data:
-        # Return user information as JSON
-        return jsonify({'name': user_data['name']})
+        # Ensure 'emergency_contact' field exists before accessing its properties
+        emergency_contact = user_data.get('emergency_contact', {})
+
+        # Return user email and emergency contact as JSON
+        return jsonify({'email': user_data['email'], 'emergency_contact': emergency_contact})
     else:
         return jsonify({'error': 'User not found'}), 404
 
 
-@socketio.on('send_help_message')
-def handle_help_message(data):
-    name = data['username']  # 'username' instead of 'name'
-    emergency_phone = data['emergency_phone']
-    message_content = f'I am @{name}, please help me.'
+def get_user_emails(user_id):
+    # Retrieve user email and emergency email from MongoDB
+    user_data = users_collection.find_one({'_id': ObjectId(user_id)})
+    email = user_data.get('email')
+    emergency_email = user_data.get('emergency_contact', {}).get('emergency_email')
 
-    # Simulate sending a message back to the user
-    socketio.emit('receive_help_message', {'content': message_content}, room=emergency_phone)
+    return email, emergency_email
+
+
+def get_smtp_details(user_id):
+    # Retrieve SMTP details from MongoDB based on the user ID
+    smtp_details = users_collection.find_one({'_id': ObjectId(user_id)}, {'smtp_details': 1})
+
+    if smtp_details:
+        return smtp_details.get('smtp_details', {})
+    else:
+        return {}
+
+
+# route to send email
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    try:
+        # Retrieve email details from the request
+        subject = request.form.get('Help Message')
+        body = request.form.get('I am not feeling well, please help me.')
+
+        # Fetch user's email details from MongoDB
+        user_email_details = users_collection.find_one({'email': session['email']})
+
+        if user_email_details:
+            sender_email = user_email_details['leeqe1102@gmail.com']
+            sender_password = user_email_details['LQE826455ER']
+
+            # Fetch receiver_email and SMTP details from MongoDB
+            emergency_contact = user_email_details.get('emergency_contact', {})
+            receiver_email = emergency_contact.get('emergency_email', '')
+
+            smtp_details = user_email_details.get('smtp_details', {})
+            smtp_server = smtp_details.get('smtp_server', 'smtp.office365.com')
+            smtp_port = smtp_details.get('smtp_port', '587')
+
+            if not receiver_email or not smtp_server or not smtp_port:
+                return jsonify({'error': 'Incomplete email details in MongoDB'})
+
+            # Create message
+            message = MIMEMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = subject
+
+            # Attach the body of the email
+            message.attach(MIMEText(body, "plain"))
+
+            # Send email using SMTP
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_email, message.as_string())
+
+            return jsonify({'message': 'Email sent successfully'})
+        else:
+            return jsonify({'error': 'User email details not found'})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+
+# @socketio.on('send_help_message')
+# def handle_help_message(data):
+#     username = data['username']
+#     emergency_email = data['emergency_email']
+#     message_content = f'I am {username}, please help me.'
+
+#     # Send email to the emergency email using SMTP
+#     try:
+#     # Retrieve emergency_email from MongoDB based on the provided username
+#     user_data = users_collection.find_one({'name': username})
+#     if user_data and 'emergency_contact' in user_data:
+#         emergency_email = user_data['emergency_contact'].get('emergency_email')
+
+#         if emergency_email:
+#             smtp_server = 'your_smtp_server'
+#             smtp_port = 587  # Update this with the correct port
+#             smtp_name = 'your_smtp_username'
+#             sender_email = 'your_sender_email'
+
+#             msg = MIMEText(message_content)
+#             msg['Subject'] = 'Emergency Help'
+#             msg['From'] = sender_email
+#             msg['To'] = emergency_email
+
+#             with smtplib.SMTP(smtp_server, smtp_port) as server:
+#                 server.starttls()
+#                 # Omit the login part as no password is required
+#                 server.sendmail(sender_email, [emergency_email], msg.as_string())
+
+#             print(f"Help message sent to {emergency_email}")
+
+# except Exception as e:
+#     print(f"Error sending help message: {str(e)}")
+
+#     # Simulate sending a message back to the user
+#     socketio.emit('receive_help_message', {'content': message_content, 'to': emergency_email})
 
 
 # New route for the community area

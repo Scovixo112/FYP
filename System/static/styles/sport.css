@@ -1,0 +1,139 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.top-box {
+    background-color: #eef1f3;
+    padding: 10px;
+    color: #fff;
+    text-align: right;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.horizontal-line {
+    border-top: 1px solid #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.left-box {
+    width: 15%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.left-box img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.functions {
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+
+.functions a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.functions a:hover {
+    background-color: #f0f0f0;
+}
+
+.right-box {
+    width: 80%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sport-area-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.rectangle-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.box-content {
+    display: flex;
+    align-items: center;
+    text-align: justify;
+}
+
+.box-image {
+    max-width: 40%;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.vertical-line {
+    height: 100%;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
+    position: relative;  /* needs to be correct */
+}
+
+.box-title-content {
+    flex-grow: 1;
+}
+
+.box-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+.box-text {
+    max-width: 60%;
+}
+
+.box-title-content::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #ccc;
+    top: 0;
+    right: 0;
+}
+
+.rectangle-box {
+    /* Your existing styles for rectangle-box */
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}

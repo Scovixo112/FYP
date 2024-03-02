@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-    <!-- Include Socket.IO client library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/view_post.css') }}" >
+    <script type="text/javascript" src="{{ url_for('static', filename='script/view_post.js') }}"></script>
 
     <title>Home Page</title>
 </head>
@@ -19,7 +18,7 @@
     <div class="container">
         <div class="left-box">
             <!-- Left box content -->
-            <img src="your-logo.png" alt="Logo">
+            <img src="{{ url_for('static', filename='images/welcome.png')}}" alt="Logo">
             <div class="functions">
                 <a href="{{ url_for('profile' )}}">User Profile</a>
                 <a href="{{ url_for('home') }}">Home</a>
@@ -57,114 +56,3 @@
 
 </body>
 </html>
-
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .top-box {
-        background-color: #eef1f3;
-        padding: 10px;
-        color: #fff;
-        text-align: right;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        margin-right: 20px;
-    }
-
-    .horizontal-line {
-        border-top: 1px solid #fff;
-        margin-top: 5px;
-        margin-bottom: 10px;
-    }
-
-    .container {
-        display: flex;
-        justify-content: flex-start;
-        margin: 20px;
-    }
-
-    .left-box {
-        width: 15%;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .left-box img {
-        max-width: 100%;
-        border-radius: 50%;
-        margin-bottom: 20px;
-    }
-
-    .functions {
-        border-right: 1px solid #ccc;
-        padding-right: 20px;
-    }
-
-    .functions a {
-        display: block;
-        color: #333;
-        text-decoration: none;
-        padding: 10px 0;
-    }
-
-    .functions a:hover {
-        background-color: #f0f0f0;
-    }
-
-    .right-box {
-        width: 80%;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-</style>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var addCommentForm = document.getElementById('addCommentForm');
-
-        if (addCommentForm) {
-            addCommentForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                // Get form data
-                var formData = new FormData(event.target);
-
-                // Send POST request to add_comment endpoint
-                fetch('/add_comment/{{ post["_id"] }}', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'  // Add this header to indicate an AJAX request
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Redirect to the view_post page with the updated comment
-                        window.location.href = '/view_post/{{ post["_id"] }}';
-                    } else {
-                        // Handle error scenario if needed
-                        console.error('Error adding comment:', data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error adding comment:', error);
-                });
-            });
-        }
-    });
-</script>
