@@ -1,25 +1,63 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', sans-serif;
+    /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
+    background: #E0D9D3;
+    background-image: url('../images/profile.jpg');
     margin: 0;
     padding: 0;
 }
 
 .top-box {
-    background-color: #eef1f3;
+    background: #94785A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    color: #fff;
     text-align: right;
+}
+
+.top-box p {
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000000;
+    text-decoration: overline;
+}
+
+.top-box a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.horizontal-line {
+    border-top: 1px solid #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .container {
     display: flex;
-    justify-content: flex-start;
-    margin: 20px;
+    justify-content: center;
+    align-items: stretch; /* Stretch both boxes to have the same height */
+    height: auto;
+}
+
+.left-box,
+.right-box {
+    display: flex;
+    flex-direction: column;
 }
 
 .left-box {
-    width: 15%;
-    background-color: #fff;
+    width: 25%;
+    background: #f6f5f3a3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -34,7 +72,12 @@ body {
 
 .functions {
     border-right: 1px solid #ccc;
-    padding-right: 20px;
+    padding-right: 12px;
+    padding-left: 15px;
+    background-color: #bb9a889f;
+    border: 1px solid #000000;
+    border-radius: 14px;
+    text-align: left;
 }
 
 .functions a {
@@ -42,37 +85,46 @@ body {
     color: #333;
     text-decoration: none;
     padding: 10px 0;
+    font-size: 18px;
+    /* margin-left: 15px; */
 }
 
 .functions a:hover {
     background-color: #f0f0f0;
+    border-radius: 14px;
 }
 
 .right-box {
     width: 80%;
-    background-color: #fff;
+    background: #f6f5f3a3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.right-box h2 {
+#user {
     text-align: center;
+    font-size: 65px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .info-box,
 .todo-box {
-    background-color: #f9f9f9;
+    background-color: #f6f5f3a3;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     position: relative;
     margin-top: 20px;
+    border: 2px solid #000000;
 }
 
 .info-box h4,
-.todo-box h4 {
+.todo-box h4,
+.mental-health-status h4 {
     margin-bottom: 10px;
+    font-weight: bolder;
 }
 
 .info-box p,
@@ -90,7 +142,6 @@ body {
 }
 
 .todo-box {
-    background-color: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -105,6 +156,10 @@ body {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+#editIcon:hover {
+    color: #0056b3;
 }
 
 ul {
@@ -135,13 +190,14 @@ ul li .edit-icon {
 }
 
 .mental-health-status {
-    background-color: #f9f9f9;
+    background-color: #f6f5f3a3;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     text-align: left;
     position: relative;
+    border: 2px solid #000000;
 }
 
 /* .mental-health-status #report-icon {
@@ -222,4 +278,38 @@ ul li .edit-icon {
 .report-icon i {
     font-size: 20px;
     margin-right: 5px;
+}
+
+.info-box,
+.todo-box{
+    transition: background-color 0.3s;
+}
+
+.info-box:hover,
+.mental-health-status:hover,
+.todo-box:hover {
+    background-color: #ccc;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-box,
+.todo-box,
+.mental-health-status,
+.functions {
+    animation: slideIn 0.8s ease-out;
+}
+
+.historyPopup h4{
+    font-weight: bolder;
+    font-size: 18px;
 }

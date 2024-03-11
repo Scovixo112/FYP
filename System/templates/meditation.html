@@ -13,24 +13,25 @@
 </head>
 <body>
     <div class="top-box">
-        <a href="{{ url_for('index') }}">Logout</a>
+        <p>Mortal</p>
+        <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
     </div>
 
-    <div class="container">
-        <div class="left-box">
+    <div class="container d-flex justify-content-center align-items-stretch min-vh-100"">
+        <div class="col-md-4 left-box">
             <!-- Left box content -->
             <img src="{{ url_for('static', filename='images/welcome.png')}}" alt="Logo">
             <div class="functions">
-                <a href="{{ url_for('profile' )}}">User Profile</a>
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('home') }}" onclick="scrollToTop()">Emergency Call</a>
-                <a href="{{ url_for('community_area') }}">Community Area</a>
-                <a href="{{ url_for('activities')}}">Activities</a>
+                <a href="{{ url_for('profile' )}}"><i class="fas fa-user" style="font-size: 22px;"></i> User Profile</a>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" style="font-size: 22px;"></i> Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()"><i class="fa fa-phone" style="font-size: 22px; color:rgb(181, 8, 8);"></i> Emergency Call</a>
+                <a href="{{ url_for('community_area') }}"><i class="fa fa-city" style="font-size: 22px;"></i> Community Area</a>
+                <a href="{{ url_for('activities')}}"><i class="fas fa-gamepad" style="font-size: 22px;"></i> Activities</a>
             </div>
         </div>
 
         <!-- Right box content -->
-        <div class="right-box">
+        <div class="col-md-8 right-box">
             <div id="meditation-area-title">Meditation Area</div>
 
             <!-- Rectangle Boxes -->
@@ -45,6 +46,7 @@
                         <div>
                             Body scan meditation is a form of mindfulness meditation that involves taking an in-depth analysis of your body, paying close attention to any physical sensations or feelings of pain, and releasing them. Like most mindfulness practices, a body scan only involves your mind and a bit of concentration. This meditation technique can help address the parts of the body experiencing chronic pain or release tension brought on by stress or an intense emotional state. Body scanning can bring about more awareness of your physical condition while giving you the tools you need to get outside of your head for a while.
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                     <li>Get into position</li>
                                     <li>Breathe deeply</li>
@@ -70,6 +72,7 @@
                         <div>
                             Yoga is an ancient spiritual practice from India that uses breath control, physical exercise, and meditative postures. The practice of yoga uses “asanas” or various physical poses to achieve a divine connection with the universe. In fact, the word yoga means “union” in Sanskrit. Some people refer to yoga as moving meditation, where you calm your mind and create awareness through doing the poses (Mohammad, 2019).
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Select a quiet environment</li>
                                 <li>Do some light stretching or exercising</li>
@@ -118,6 +121,7 @@
                             <br><br>
                             Imagery can also be used to change how you recall negative memories. Imagining happy endings in place of such memories–a process called rescripting–resulted in better quality of life and self-esteem in at least one study. The participants were asked to revise past events in their imagination; visualize their moods as symbols or creatures, then transform them into something more positive; and find positive phrases and words to replace negative ones
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Decide What You Want</li>
                                 <li>Picture the Scene</li>
@@ -125,8 +129,6 @@
                                 <li>Visualize Daily</li>
                             </ol>
                         </div>
-
-                        
                     </div>
                 </div>
             </div>
@@ -142,6 +144,7 @@
                         <div>
                             Many meditation traditions use chanting or periodic chimes of a gong as a way to focus the mind. "Chanting is a modality to arrive at the same type of meditative state," said Dr. Schwartz. "You use that … to gain your ability to focus." One study found that "active-type meditative practices" like chanting and yoga seemed to activate parts of the brain involved in regulating mood and emotional control.
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Om Om Om. Repeat it throughout your day,</li>
                                 <li>Bhakti. Begin to understand the meaning of bhakti practice (devotional yoga practices) and the intention behind and throughout it.</li>
@@ -170,6 +173,7 @@
                         <div>
                             Mindfulness meditation might be considered the mother of all meditation. Many other types of meditation have stemmed from mindfulness, and it may have the most scientific evidence supporting it. "Mindfulness meditation is a moment-to-moment awareness of the present moment," said Dr. Nerurkar. "It uses your breath to create an anchor to keep bringing your attention back to the present moment and help with cognitive retraining."
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Sit in an upright, stable, and alert posture</li>
                                 <li>Tune into the breath-related sensations</li>
@@ -194,6 +198,7 @@
                         <div>
                             Loving-kindness meditation focuses on creating an attitude of love and kindness towards yourself and others. Several studies have found that people who practice this type of meditation have less depression, a more positive outlook, fewer negative emotions, and greater compassion.Loving-kindness meditation may also help quell self-criticism, which underlies a number of different mental health disorders. One study found reductions in self-criticism lasted for at least three months after the actual meditation sessions had ended. A related type of meditation, compassion meditation, stresses unconditional compassion and has also been linked with better mood and fewer negative feelings.
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Get comfortable</li>
                                 <li>Be kind to yourself</li>
@@ -237,6 +242,7 @@
                         <div>
                             Awareness of your breath is a fundamental component of many different forms of meditation, particularly mindfulness meditation. "Mindfulness meditation uses the object of your breath to focus on, to help with mind training," said Dr. Nerurkar. Breath awareness meditation may also be called mindful breathing. As little as 15 minutes a day of focusing on inhaling and exhaling can yield mood benefits, including lessened emotional reactivity. And you don't necessarily have to set aside special time to pay attention to your breathing: Many people find ways to incorporate awareness of their breath throughout the day. It can be done sitting, standing, or lying down, with your eyes open or closed.
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Counting after the out-breath</li>
                                 <li>Counting before the in-breath</li>
@@ -261,6 +267,7 @@
                         <div>
                             Transcendental meditation, or TM as it is known, has a large following worldwide. Instead of using the breath to anchor your attention, "transcendental meditation uses sound or a personal mantra, often one or two syllables, as the anchor," said Dr. Nerurkar. One study of teachers and staff at a residential school for students with severe behavioral problems–in other words, people with high-stress jobs–found that transcendental meditation improved stress, depression, and burnout and that the benefits lasted four months
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Sit comfortably in a chair or on the floor with your hands on your lap.</li>
                                 <li>Close your eyes for a few seconds to a minute, take a few deep breaths, relax your body.</li>
@@ -281,11 +288,12 @@
                     <div class="vertical-line"></div>
                     <div class="box-title-content">
                         <div class="box-title">Walking Meditation</div>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/HRuqe26F8SU?si=r99oRl9SnaWEYf95" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/aCwEwz1xU2M?si=GcGLSH5QQi7EQBAn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
                         <div>
                             Walking, of course, is good for both your physical and mental health. But a walking meditation may take you to another level. Aerobic walking coupled with Buddhist meditation three times a week for 12 weeks not only reduced depression but also improved flexibility and balance in a small group of older adults in one study. Meditating before or after walking (for as little as 10 minutes at a time) also lowered anxiety in younger adults in other research. "Meditation is [about] learning how to not just focus your mind but also to relax your mind," said Dr. Schwartz. "You're learning how to bring [your mind] back to neutral," and you can do that not just while walking but with many forms of exercise, added Dr. Schwartz.
                             <br><br>
+                            <h5 style="font-weight: bolder;">Tips or steps to perform meditation:<br></h5>
                             <ol>
                                 <li>Choose a foot to start with. Pick it up, move it through space, and gently place it on the ground.</li>
                                 <li>Walk with intention. A way for you to reconnect with the present moment.</li>

@@ -90,6 +90,12 @@ def register():
     email = request.form['email']
     password = request.form['password']
 
+    # Check if the user already exists
+    existing_user = users_collection.find_one({'email': email})
+    if existing_user:
+        flash('User already exists. Please choose a different email.', 'danger')
+        return redirect(url_for('signup'))
+
     # Hash the password before storing it
     hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
@@ -371,6 +377,7 @@ def update_mental_health_status():
     )
 
     return jsonify({'message': 'Mental health status updated successfully'})
+
 
 
 # New route for updating emergency contact from home page

@@ -13,24 +13,25 @@
 </head>
 <body>
     <div class="top-box">
-        <a href="{{ url_for('index') }}">Logout</a>
+        <p>Mortal</p>
+        <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
     </div>
 
-    <div class="container">
-        <div class="left-box">
+    <div class="container d-flex justify-content-center align-items-stretch min-vh-100">
+        <div class="col-md-4 left-box">
             <!-- Left box content -->
-            <img src="{{ url_for('static', filename='images/welcome.png')}}" alt="Logo">
+            <img src="{{ url_for('static', filename='images/welcome.png')}}">
             <div class="functions">
-                <a href="{{ url_for('profile' )}}">User Profile</a>
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('home') }}" onclick="scrollToTop()">Emergency Call</a>
-                <a href="{{ url_for('community_area') }}">Community Area</a>
-                <a href="{{ url_for('activities')}}">Activities</a>
+                <a href="{{ url_for('profile' )}}"><i class="fas fa-user" style="font-size: 22px;"></i> User Profile</a>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" style="font-size: 22px;"></i> Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()"><i class="fa fa-phone" style="font-size: 22px; color:rgb(181, 8, 8);"></i> Emergency Call</a>
+                <a href="{{ url_for('community_area') }}"><i class="fa fa-city" style="font-size: 22px;"></i> Community Area</a>
+                <a href="{{ url_for('activities')}}"><i class="fas fa-gamepad" style="font-size: 22px;"></i> Activities</a>
             </div>
         </div>
 
         <!-- Right box content -->
-        <div class="right-box">
+        <div class="col-md-8 right-box">
             <div id="activities-section">
                 <h2 class="section-title">Activities</h2>
             
