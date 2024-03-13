@@ -10,8 +10,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
-from werkzeug.security import generate_password_hash, check_password_hash
-import re
 
 
 app = Flask(__name__)
