@@ -3,6 +3,9 @@ body {
     /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
     background: #E0D9D3;
     background-image: url('../images/activities.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
     margin: 0;
     padding: 0;
 }

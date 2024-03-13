@@ -1,14 +1,36 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', sans-serif;
+    /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
+    background: #E0D9D3;
+    background-image: url('../images/sport.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
     margin: 0;
     padding: 0;
 }
 
 .top-box {
-    background-color: #eef1f3;
+    background: #94785A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    color: #fff;
     text-align: right;
+}
+
+.top-box p {
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000000;
+    text-decoration: overline;
+}
+
+.top-box a {
+    text-decoration: none;
+    color: #000000;
 }
 
 .logo {
@@ -25,13 +47,20 @@ body {
 
 .container {
     display: flex;
-    justify-content: flex-start;
-    margin: 20px;
+    justify-content: center;
+    align-items: stretch; /* Stretch both boxes to have the same height */
+    height: auto;
+}
+
+.left-box,
+.right-box {
+    display: flex;
+    flex-direction: column;
 }
 
 .left-box {
-    width: 15%;
-    background-color: #fff;
+    width: 25%;
+    background: #f6f5f3a3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -46,7 +75,12 @@ body {
 
 .functions {
     border-right: 1px solid #ccc;
-    padding-right: 20px;
+    padding-right: 12px;
+    padding-left: 15px;
+    background-color: #bb9a889f;
+    border: 1px solid #000000;
+    border-radius: 14px;
+    text-align: left;
 }
 
 .functions a {
@@ -54,15 +88,18 @@ body {
     color: #333;
     text-decoration: none;
     padding: 10px 0;
+    font-size: 18px;
+    /* margin-left: 15px; */
 }
 
 .functions a:hover {
     background-color: #f0f0f0;
+    border-radius: 14px;
 }
 
 .right-box {
     width: 80%;
-    background-color: #fff;
+    background: #f6f5f3a3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -70,9 +107,10 @@ body {
 
 #sport-area-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 38px;
     margin-bottom: 20px;
     font-weight: bold;
+    font-family: Bradley Hand ITC;
 }
 
 .rectangle-box {
@@ -136,4 +174,62 @@ body {
 
 .rectangle-box:hover {
     background-color: #ccc; /* Change to your desired hover color */
+}
+
+.rectangle-box {
+    /* Your existing styles for rectangle-box */
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center the child elements horizontally */
+    background: #fff;
+    color: #5a4025;
+    padding: 10px 40px;
+    border-radius: 6px;
+}
+
+.pagination ul {
+    margin: 20px 30px;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 0 10px;
+    background: #e1e0e0b6;
+    width: 45px;
+    height: 45px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 45px;
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+.rectangle-box {
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+    animation: slideIn 0.8s ease-out;
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

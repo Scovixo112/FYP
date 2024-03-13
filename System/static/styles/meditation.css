@@ -107,9 +107,10 @@ body {
 
 #meditation-area-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 38px;
     margin-bottom: 20px;
     font-weight: bold;
+    font-family: Bradley Hand ITC;
 }
 
 .rectangle-box {
@@ -173,4 +174,53 @@ body {
 
 .rectangle-box:hover {
     background-color: #ccc; /* Change to your desired hover color */
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center the child elements horizontally */
+    background: #fff;
+    color: #5a4025;
+    padding: 10px 40px;
+    border-radius: 6px;
+}
+
+.pagination ul {
+    margin: 20px 30px;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 0 10px;
+    background: #e1e0e0b6;;
+    width: 45px;
+    height: 45px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 45px;
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+.rectangle-box {
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+    animation: slideIn 0.8s ease-out;
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

@@ -10,6 +10,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from werkzeug.security import generate_password_hash, check_password_hash
+import re
 
 
 app = Flask(__name__)
@@ -592,9 +594,11 @@ def view_post(post_id):
 
     if comment_form.validate_on_submit():
         comment_content = comment_form.content.data
+        comment_time = datetime.now()
 
-        # Add the comment to the post
-        posts_collection.update_one({'_id': ObjectId(post_id)}, {'$push': {'comments': {'content': comment_content}}})
+        # Add the comment with time to the post
+        comment = {'content': comment_content, 'time': comment_time}
+        posts_collection.update_one({'_id': ObjectId(post_id)}, {'$push': {'comments': comment}})
 
         flash('Comment added successfully', 'success')
         return redirect(url_for('view_post', post_id=post_id))
@@ -614,13 +618,15 @@ def add_comment(post_id):
 
     if comment_form.validate_on_submit():
         comment_content = comment_form.content.data
+        comment_time = datetime.now()
 
-        # Add the comment to the post
-        posts_collection.update_one({'_id': ObjectId(post_id)}, {'$push': {'comments': {'content': comment_content}}})
+        # Add the comment with time to the post
+        comment = {'content': comment_content, 'time': comment_time}
+        posts_collection.update_one({'_id': ObjectId(post_id)}, {'$push': {'comments': comment}})
 
         # Return the updated comments
         updated_post = posts_collection.find_one({'_id': ObjectId(post_id)})
-        updated_comments = [{'content': comment['content']} for comment in updated_post.get('comments', [])]
+        updated_comments = [{'content': comment['content'], 'time': comment['time']} for comment in updated_post.get('comments', [])]
 
         return jsonify({"success": True, "message": "Comment added successfully", "comments": updated_comments})
     else:

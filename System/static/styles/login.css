@@ -4,6 +4,9 @@ body {
     text-align: center;
     font-family: Comic Sans MS;
     background-image: url('../images/login.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
 }
 
 .container {
