@@ -24,3 +24,5 @@ document.getElementById('createPostForm').addEventListener('submit', function(ev
         console.error('Error creating post:', error);
     });
 });
+
+

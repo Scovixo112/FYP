@@ -631,5 +631,6 @@ def add_comment(post_id):
         return jsonify({"error": "Invalid form data"}), 400
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)

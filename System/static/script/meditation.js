@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const boxes = document.querySelectorAll('.rectangle-box');
-    const itemsPerPage = 4;
+    const itemsPerPage = 8;
     let currentPage = 1;
 
     function showPage(page) {
