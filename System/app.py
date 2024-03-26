@@ -17,6 +17,7 @@ bcrypt = Bcrypt(app)
 mail = Mail(app)
 app.secret_key = 'S\x92z\xe7\x1e\x8b\x87+\x95E\x10\x8d\xf2\xf3bM'
 
+
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://qianerlee:826455@cluster0.gg05xge.mongodb.net/')
 db = client['users']
