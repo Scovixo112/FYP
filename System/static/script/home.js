@@ -52,56 +52,42 @@ function updateEmergencyContactUI(emergencyContact) {
     document.getElementById('emergency-email-value').innerText = emergencyContact.emergency_email || 'N/A';
 }
 
-// sendEmail function to dynamically fetch SMTP details
-async function sendEmail(receiverEmail, subject, body) {
-    try {
-        const response = await fetch('/get_user_info', { method: 'GET' });
-        const userData = await response.json();
 
-        const smtpDetails = userData.smtp_details;
-
-        if (!smtpDetails || !smtpDetails.smtp_server || !smtpDetails.smtp_port || !smtpDetails.email || !smtpDetails.email_password) {
-            throw new Error('SMTP details are missing or incorrect.');
+function sendWhatsAppHelp() {
+    fetch('/send_whatsapp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
         }
-
-        const { smtp_server, smtp_port, email, email_password } = smtpDetails;
-
-        const message = new FormData();
-        message.append('receiver_email', receiverEmail);
-        message.append('subject', subject);
-        message.append('body', body);
-
-        const emailResponse = await fetch('/send_email', {
-            method: 'POST',
-            body: message,
-            headers: {
-                'Authorization': `Bearer ${email_password}`,  // Use a more secure method to send email password
-            }
-        });
-
-        if (emailResponse.ok) {
-            console.log(`Email sent successfully to ${receiverEmail}`);
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.whatsapp_link) {
+            window.open(data.whatsapp_link, '_blank'); // Open the WhatsApp link in a new tab
+        } else if (data.error) {
+            throw new Error(data.error); // Throw an error if an error message is received
         } else {
-            throw new Error(`Error sending email to ${receiverEmail}`);
+            throw new Error('Unknown error occurred'); // Throw an error for unknown response
         }
-    } catch (error) {
-        console.error('Error sending email:', error);
-    }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+        alert('An error occurred while sending the WhatsApp message');
+    });
 }
 
-
-function sendHelpMessage() {
-    fetch('/get_user_info', { method: 'GET' })
-        .then(response => response.json())
-        .then(data => {
-            const emergencyEmail = data.emergency_contact.emergency_email;
-            const userEmail = data.email;
-            const subject = 'Emergency Help Needed';
-            const message = `User ${userEmail} needs help!`;
-
-            sendEmail(emergencyEmail, subject, message);
-        })
-        .catch(error => console.error('Error:', error));
-}
+// Add double-click event listener to the Help button
+document.getElementById("help-button").addEventListener("dblclick", function(event) {
+    // Prevent default behavior of the double-click event
+    event.preventDefault();
+    
+    // Call the sendWhatsAppHelp() function to send the WhatsApp message
+    sendWhatsAppHelp();
+});
 
 

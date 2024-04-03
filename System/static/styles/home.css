@@ -300,3 +300,71 @@ body {
 .functions {
     animation: slideIn 0.8s ease-out;
 }
+
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.optin-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000; /* Ensure it's above the blur background */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.optin-content h3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.optin-content-container {
+    max-height: 570px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+.optin-content {
+    padding-right: 20px; /* Adjust for scrollbar width */
+    text-align: justify;
+    font-size: 18px;
+}
+
+.optin-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.optin-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.optin-buttons button:hover {
+    background-color: #f0f0f0; /* Hover color */
+}
+
+#agree-button {
+    background-color: #4caf50; /* Green color */
+    color: #fff; /* White text color */
+}
+
+#cancel-button {
+    background-color: #f44336; /* Red color */
+    color: #fff; /* White text color */
+}
+

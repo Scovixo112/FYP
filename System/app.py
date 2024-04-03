@@ -5,16 +5,12 @@ from pymongo import MongoClient
 from wtforms.validators import DataRequired
 from bson import ObjectId
 from datetime import datetime
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from flask_bcrypt import Bcrypt
-from flask_mail import Mail
+import urllib.parse
 
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-mail = Mail(app)
 app.secret_key = 'S\x92z\xe7\x1e\x8b\x87+\x95E\x10\x8d\xf2\xf3bM'
 
 
@@ -440,109 +436,32 @@ def get_user_info():
         return jsonify({'error': 'User not found'}), 404
 
 
-def get_user_emails(user_id):
-    # Retrieve user email and emergency email from MongoDB
-    user_data = users_collection.find_one({'_id': ObjectId(user_id)})
-    email = user_data.get('email')
-    emergency_email = user_data.get('emergency_contact', {}).get('emergency_email')
-
-    return email, emergency_email
-
-
-def get_smtp_details(user_id):
-    # Retrieve SMTP details from MongoDB based on the user ID
-    smtp_details = users_collection.find_one({'_id': ObjectId(user_id)}, {'smtp_details': 1})
-
-    if smtp_details:
-        return smtp_details.get('smtp_details', {})
-    else:
-        return {}
-
-
-# route to send email
-@app.route('/send_email', methods=['POST'])
-def send_email():
+@app.route('/send_whatsapp', methods=['POST'])
+def send_whatsapp():
     try:
-        # Retrieve email details from the request
-        subject = request.form.get('Help Message')
-        body = request.form.get('I am not feeling well, please help me.')
+        # Retrieve user's email from session
+        email = session.get('email')
 
-        # Fetch user's email details from MongoDB
-        user_email_details = users_collection.find_one({'email': session['email']})
+        # Fetch user's data from MongoDB based on email
+        user_data = users_collection.find_one({'email': email})
+        
+        # Extract name directly
+        user_name = user_data.get('name')
 
-        if user_email_details:
-            sender_email = user_email_details['leeqe1102@gmail.com']
-            sender_password = user_email_details['LQE826455ER']
+        # Extract emergency contact details
+        emergency_contact = user_data.get('emergency_contact', {})
+        emergency_phone = emergency_contact.get('emergency_phone')
 
-            # Fetch receiver_email and SMTP details from MongoDB
-            emergency_contact = user_email_details.get('emergency_contact', {})
-            receiver_email = emergency_contact.get('emergency_email', '')
+        # Compose WhatsApp message
+        message = f"I am {user_name}. Please help me."
 
-            smtp_details = user_email_details.get('smtp_details', {})
-            smtp_server = smtp_details.get('smtp_server', 'smtp.office365.com')
-            smtp_port = smtp_details.get('smtp_port', '587')
+        # Generate wa.me link to send WhatsApp message
+        encoded_message = urllib.parse.quote(message)
+        wa_link = f"https://wa.me/{emergency_phone}?text={encoded_message}"
 
-            if not receiver_email or not smtp_server or not smtp_port:
-                return jsonify({'error': 'Incomplete email details in MongoDB'})
-
-            # Create message
-            message = MIMEMultipart()
-            message["From"] = sender_email
-            message["To"] = receiver_email
-            message["Subject"] = subject
-
-            # Attach the body of the email
-            message.attach(MIMEText(body, "plain"))
-
-            # Send email using SMTP
-            with smtplib.SMTP(smtp_server, smtp_port) as server:
-                server.starttls()
-                server.login(sender_email, sender_password)
-                server.sendmail(sender_email, receiver_email, message.as_string())
-
-            return jsonify({'message': 'Email sent successfully'})
-        else:
-            return jsonify({'error': 'User email details not found'})
+        return jsonify({'whatsapp_link': wa_link})
     except Exception as e:
         return jsonify({'error': str(e)})
-
-
-# @socketio.on('send_help_message')
-# def handle_help_message(data):
-#     username = data['username']
-#     emergency_email = data['emergency_email']
-#     message_content = f'I am {username}, please help me.'
-
-#     # Send email to the emergency email using SMTP
-#     try:
-#     # Retrieve emergency_email from MongoDB based on the provided username
-#     user_data = users_collection.find_one({'name': username})
-#     if user_data and 'emergency_contact' in user_data:
-#         emergency_email = user_data['emergency_contact'].get('emergency_email')
-
-#         if emergency_email:
-#             smtp_server = 'your_smtp_server'
-#             smtp_port = 587  # Update this with the correct port
-#             smtp_name = 'your_smtp_username'
-#             sender_email = 'your_sender_email'
-
-#             msg = MIMEText(message_content)
-#             msg['Subject'] = 'Emergency Help'
-#             msg['From'] = sender_email
-#             msg['To'] = emergency_email
-
-#             with smtplib.SMTP(smtp_server, smtp_port) as server:
-#                 server.starttls()
-#                 # Omit the login part as no password is required
-#                 server.sendmail(sender_email, [emergency_email], msg.as_string())
-
-#             print(f"Help message sent to {emergency_email}")
-
-# except Exception as e:
-#     print(f"Error sending help message: {str(e)}")
-
-#     # Simulate sending a message back to the user
-#     socketio.emit('receive_help_message', {'content': message_content, 'to': emergency_email})
 
 
 # New route for the community area

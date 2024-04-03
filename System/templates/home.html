@@ -12,6 +12,47 @@
     <title>Home Page</title>
 </head>
 <body>
+    <div class="blur-background"></div>
+    <div id="optin-message" class="col-md-5 optin-box">
+        <div class="optin-content-container">
+            <div class="optin-content">
+                <h3>Opt-in Policy</h3>
+                <p2>
+                    At Mortal, we are committed to prioritizing the mental health and well-being of our users (employees). Our mental health system offers various resources and support services designed to promote positive mental health outcomes. To ensure transparency and user consent, we have established this opt-in policy outlining the terms and conditions governing participation in our mental health system.<br><br>
+                    <strong>1. Opt-in Process:</strong><br>
+                    Users must actively opt-in to access and utilize the mental health system resources.
+                    The opt-in process will be clearly presented to users, providing information about the services offered, data collection practices, and user rights.
+                    By opting-in, users acknowledge their understanding of the terms outlined in this policy and consent to participate in the mental health system.<br><br>
+                    
+                    <strong>2. Confidentiality and Privacy:</strong><br>
+                    All information shared within the mental health system will be treated with the utmost confidentiality and privacy.
+                    User data collected through the mental health system will be securely stored and protected in accordance with applicable privacy laws and regulations.
+                    Confidentiality will be maintained except in cases where disclosure is required by law or necessary to prevent harm to the user or others.<br><br>
+                
+                    <strong>3. Data Collection and Usage:</strong><br>
+                    User data collected within the mental health system will be used for the purpose of providing personalized support and help to understand of our mental health services.
+                    Data collected may include, but is not limited to, personal information, usage patterns, self-reported assessments, and communication logs.
+                    Collected data will be anonymized and aggregated for statistical analysis and research purposes, with no personally identifiable information shared without explicit user consent.<br><br>
+    
+                    <strong>4. User Rights:</strong><br>
+                    Users have the right to withdraw their consent and opt-out of the mental health system at any time.
+                    Opting out will result in the cessation of access to mental health system resources and support services.
+                    Users may request access to their personal data collected within the mental health system and request corrections or deletions as needed.<br><br>
+                
+                    <strong>Conclusion:</strong><br>
+                    By opting-in to our mental health system, users demonstrate their commitment to prioritizing their mental health and well-being. Mortal is dedicated to providing a supportive and empowering environment, and we remain committed to upholding the highest standards of confidentiality, privacy, and user consent.<br><br>
+                </p2>
+            </div>
+        
+            <label for="agree-checkbox"><strong>Yes, I agree</strong></label>
+            <input type="checkbox" id="agree-checkbox">
+            <div class="optin-buttons">
+                <button id="agree-button">Agree</button>
+                <button id="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="top-box">
         <p>Mortal</p>
         <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
@@ -43,7 +84,7 @@
                 <p id="emergency-phone">Emergency Phone: <span id="emergency-phone-value">{{ data.emergency_contact.emergency_phone or 'N/A' }}</span></p>
                 <p id="emergency-email">Emergency Email: <span id="emergency-email-value">{{ data.emergency_contact.emergency_email or 'N/A' }}</span></p> <!-- Add this line -->
 
-                <button id="help-button" ondblclick="sendHelpMessage()">Help</button>
+                <button id="help-button" onclick="sendWhatsAppHelp()">Help</button>
             </div>
 
             <!-- Edit Emergency Form -->
@@ -155,6 +196,67 @@
         // Handle navigation to sport page
         window.location.href = "{{ url_for('sport') }}";
     }
+
+    // function sendWhatsAppHelp() {
+    //     fetch('/send_whatsapp', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         alert(data.message);
+    //     })
+    //     .catch(error => console.error('Error:', error));
+    // }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Opt-in message box elements
+    var optinBox = document.getElementById('optin-message');
+    var blurBackground = document.querySelector('.blur-background');
+    var agreeButton = document.getElementById('agree-button');
+    var cancelButton = document.getElementById('cancel-button');
+    var agreeCheckbox = document.getElementById('agree-checkbox');
+
+    // Function to show opt-in message box
+    function showOptinMessage() {
+        blurBackground.style.display = 'block';
+        optinBox.style.display = 'block';
+    }
+
+    // Function to hide opt-in message box
+    function hideOptinMessage() {
+        blurBackground.style.display = 'none';
+        optinBox.style.display = 'none';
+    }
+
+    // Functionality for 'Agree' button
+    agreeButton.addEventListener('click', function() {
+        // Check if the checkbox is checked
+        if (agreeCheckbox.checked) {
+            hideOptinMessage();
+            // Add your logic here for what happens when user agrees
+        } else {
+            alert('Please Agree to the Policy before proceeding.');
+        }
+    });
+
+    // Functionality for 'Cancel' button
+    cancelButton.addEventListener('click', function() {
+        window.location.href = "{{ url_for('index') }}"; // Redirect to login page
+    });
+
+    // Show opt-in message box after login (you can trigger this as needed)
+    showOptinMessage();
+
+    // Enable/disable 'Agree' button based on checkbox state
+    agreeCheckbox.addEventListener('change', function() {
+        agreeButton.disabled = !agreeCheckbox.checked;
+    });
+});
+
 </script>
 
 
