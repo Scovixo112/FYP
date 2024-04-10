@@ -46,7 +46,7 @@
                             <option value="Female" {% if form.gender.data == 'Female' or (not form.gender.data and user_data.get('gender') == 'Female') %}selected{% endif %}>Female</option>
                         </select>
                         <label for="phone_number">Phone Number: (Example: 60123456789)</label>
-                        {{ form.phone_number(class="form-control", value=user_data.get('phone_number', ''), pattern="[0-9]{10,}", title="Enter a valid phone number") }}
+                        {{ form.phone_number(class="form-control", value=user_data.get('phone_number', ''), pattern="[0-9]{10,12}", maxlength="12", title="Enter a valid phone number") }}
                         {{ form.submit(class="btn btn-primary") }}
                     </form>
                 </div>

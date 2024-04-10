@@ -82,7 +82,7 @@
                 <p id="emergency-name">Name: <span id="emergency-name-value">{{ data.emergency_contact.name or 'N/A' }}</span></p>
                 <p id="emergency-gender">Gender: <span id="emergency-gender-value">{{ data.emergency_contact.gender or 'N/A' }}</span></p>
                 <p id="emergency-phone">Emergency Phone: <span id="emergency-phone-value">{{ data.emergency_contact.emergency_phone or 'N/A' }}</span></p>
-                <p id="emergency-email">Emergency Email: <span id="emergency-email-value">{{ data.emergency_contact.emergency_email or 'N/A' }}</span></p> <!-- Add this line -->
+                <p id="emergency-email">Emergency Email: <span id="emergency-email-value">{{ data.emergency_contact.emergency_email or 'N/A' }}</span></p>
 
                 <button id="help-button" onclick="sendWhatsAppHelp()">Help</button>
             </div>
@@ -96,8 +96,8 @@
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
-                <label for="edit-emergency-phone">Emergency Phone: (Example: 60123456789)</label>
-                <input type="tel" id="edit-emergency-phone" name="emergency_phone" pattern="[0-9]{10,}" required>
+                <label for="edit-emergency-phone">Emergency Phone: (Example: 60123456789 / 601123456789 [only 011 is 8 digit])</label>
+                <input type="tel" id="edit-emergency-phone" name="emergency_phone" pattern="[0-9]{10,12}" maxlength="12" required>
                 <label for="edit-email">Email: (Example@email.com)</label>
                 <input type="email" id="edit-email" name="emergency_email" required>
                 <button type="submit">Save</button>

@@ -130,6 +130,12 @@ body {
     color: #045dbc;
     text-decoration: none;
     font-size: 22px;
+    cursor: pointer;
+}
+
+.search-icon:hover,
+.more-icon:hover {
+    color: #415889;
 }
 
 .horizontal-line {

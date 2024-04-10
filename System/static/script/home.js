@@ -90,4 +90,47 @@ document.getElementById("help-button").addEventListener("dblclick", function(eve
     sendWhatsAppHelp();
 });
 
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Opt-in message box elements
+//     var optinBox = document.getElementById('optin-message');
+//     var blurBackground = document.querySelector('.blur-background');
+//     var agreeButton = document.getElementById('agree-button');
+//     var cancelButton = document.getElementById('cancel-button');
+//     var agreeCheckbox = document.getElementById('agree-checkbox');
 
+//     // Function to show opt-in message box
+//     function showOptinMessage() {
+//         blurBackground.style.display = 'block';
+//         optinBox.style.display = 'block';
+//     }
+
+//     // Function to hide opt-in message box
+//     function hideOptinMessage() {
+//         blurBackground.style.display = 'none';
+//         optinBox.style.display = 'none';
+//     }
+
+//     // Functionality for 'Agree' button
+//     agreeButton.addEventListener('click', function() {
+//         // Check if the checkbox is checked
+//         if (agreeCheckbox.checked) {
+//             hideOptinMessage();
+//             // Add your logic here for what happens when user agrees
+//         } else {
+//             alert('Please Agree to the Policy before proceeding.');
+//         }
+//     });
+
+//     // Functionality for 'Cancel' button
+//     cancelButton.addEventListener('click', function() {
+//         window.location.href = "{{ url_for('index') }}"; // Redirect to login page
+//     });
+
+//     // Show opt-in message box after login (you can trigger this as needed)
+//     showOptinMessage();
+
+//     // Enable/disable 'Agree' button based on checkbox state
+//     agreeCheckbox.addEventListener('change', function() {
+//         agreeButton.disabled = !agreeCheckbox.checked;
+//     });
+// });
