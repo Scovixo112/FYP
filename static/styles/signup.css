@@ -1,0 +1,82 @@
+body {
+    /* background: linear-gradient(45deg, #6458e9c8, #4a4b50) rgba(0, 0, 0, 0.99); */
+    color: #fff;
+    text-align: center;
+    font-family: Comic Sans MS;
+    background-image: url('../images/login.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.box-area {
+    background-color: #f8f9fa99; /* Light gray background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+.left-box {
+    background: #9A616D;  /* Update background color */
+    color: #fff;
+    text-align: center;
+    padding: 120px;
+    border-top-left-radius: 1rem;  /* Consistent with the new design */
+    border-bottom-left-radius: 1rem;  /* Consistent with the new design */
+}
+
+.left-box img {
+    width: 100%;  /* Make the image responsive */
+    max-width: 250px;  /* Set a maximum width */
+    height: auto;  /* Maintain aspect ratio */
+}
+
+.right-box {
+    padding: 4rem;  /* Adjust padding for consistency */
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+    font-family: Comic Sans MS;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;  /* Adjust margin for consistency */
+}
+
+.input-group input {
+    border-radius: 1rem;  /* Consistent with the new design */
+    padding: 1rem;  /* Adjust padding for consistency */
+    font-size: 1rem;  /* Adjust font size for consistency */
+    font-family: Comic Sans MS;
+}
+
+.btn-primary {
+    background-color: #393f81;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1c1f4a;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+}
+
+.btn-light:hover {
+    background-color: #f0f0f0;
+}
+
+.row {
+    font-family: Comic Sans MS;
+    font-size: 18px;
+    color: #0d0e1d;
+    text-align: left;
+}

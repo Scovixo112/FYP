@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/sport.css') }}" >
+    <script type="text/javascript" src="{{ url_for('static', filename='script/meditation.js') }}"></script>
+
+
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="top-box">
+        <p>Mortal</p>
+        <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-stretch min-vh-100">
+        <div class="col-md-4 left-box">
+            <!-- Left box content -->
+            <img src="{{ url_for('static', filename='images/welcome.png')}}">
+            <div class="functions">
+                <a href="{{ url_for('profile' )}}"><i class="fas fa-user" style="font-size: 22px;"></i> User Profile</a>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" style="font-size: 22px;"></i> Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()"><i class="fa fa-phone" style="font-size: 22px; color:rgb(181, 8, 8);"></i> Emergency Call</a>
+                <a href="{{ url_for('community_area') }}"><i class="fa fa-city" style="font-size: 22px;"></i> Community Area</a>
+                <a href="{{ url_for('activities')}}"><i class="fas fa-gamepad" style="font-size: 22px;"></i> Activities</a>
+            </div>
+        </div>
+
+        <!-- Right box content -->
+        <div class="col-md-8 right-box">
+            <div id="sport-area-title">Sport Area</div>
+
+            <!-- Rectangle Boxes -->
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Go for a Run for an All-Natural Mood Boost</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/N9C88z3g0Es?si=4fXzFIEWVnNNXL5e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Running is a simple and incredibly beneficial form of physical activity that is very accessible. Starting to run regularly can be difficult. But if you still succeed, you will receive lots of advantages. What changes will happen to your body if you start running every day?
+                            <br><br>
+                            “The most tangible example of exercise stimulating certain brain chemicals is the runner’s high that many athletes report experiencing once crossing a certain threshold of exertion,” says David Muzina, MD, a psychiatrist based in Cleveland and senior medical director at Medical Mutual of Ohio. That sense of euphoria is thought to be due to the release of endorphins in the brain in response to sustained physical activity.
+                            <br><br>
+                            “Endorphins reduce your perception of pain and trigger a positive feeling in the body,” says Sanam Hafeez, PsyD, a neuropsychologist and the director of Comprehensive Consultation Psychological Services in New York City. Exercise also has a host of physical benefits that can make you feel better overall by decreasing muscle tension, improving sleep quality, and reducing anxiety, she notes.
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Lift Your Mood by Lifting Some Weights</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/0hYDDsRjwks?si=PVwOomvaqQ0tK3C9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Strength-training exercises also help relieve symptoms of depression, according to an analysis of 21 studies published in 2020. Similarly, another review of studies showed that adults who exercise with weights are less likely to develop depression than those who never exercise with weights.
+                            <br><br>
+                            How do barbells and similar equipment brighten your mood? For some people with mild to moderate depression, weight training can be a somewhat meditative practice, says Dr. Hafeez. “While you are weight training, your mind is focused on the task at hand and not thinking about anything else,” she says.
+                            <br><br>
+                            Not to mention, there are other benefits, such as increased muscle definition, elevated blood flow, and hard work — all of which can improve your outlook and give you a deep sense of satisfaction when you reach your goals, Hafeez says.
+                            <br><br>
+                            Just be sure to start slowly and use the assistance of a personal trainer if needed.
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Combine Yoga With Other Treatments to Feel Even Better</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/COp7BR_Dvps?si=DCTARlu7u5T_t73T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Practicing yoga is another activity that can ease symptoms of depression, especially when combined with usual treatment, such as cognitive behavioral therapy, according to one study.
+                            <br><br>
+                            “Eastern traditions such as yoga have a wonderful antidepressant effect in that they improve flexibility; involve mindfulness, which breaks up repetitive negative thoughts; increase strength; make you aware of your breathing; improve balance; and contain a meditative component,” says Norman E. Rosenthal, MD, a clinical professor of psychiatry at the Georgetown University School of Medicine in Washington, DC.
+                            <br><br>
+                            Dr. Rosenthal suggests starting with a yoga class in your area so you can be sure that you’re doing the movements and poses properly. Group yoga offers social benefits, too, Hafeez adds.
+                            <br><br>
+                            Not enough evidence is available to know which type of yoga is best for treating your depression or how long you need to be doing yoga to see benefits. But a study in the International Journal of Preventive Medicine found that women who practiced hatha yoga, which combines yoga poses with breathing techniques, three times a week for four weeks reported lower levels of depression, anxiety, and stress, compared with those levels at the start of the study.
+                            <br><br>
+                            Another small study in the International Journal of Yoga found that doing 60 minutes of a similar yoga practice twice a week over the course of 12 weeks decreased levels of depression and anxiety and increased self-esteem among elderly women.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Relieve Stress With Graceful Tai Chi Moves</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5PYVKgSjFPo?si=YHVo8vFLlhWzbnF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Like yoga, tai chi is another Eastern tradition that might help ease depression. Specifically, this slow, gentle practice may help reduce stress and relieve symptoms of depression, according to a review of research. Practicing tai chi in a group setting may also play a role in depression relief. “A group class can reinforce a sense of autonomy and connectedness with others. You can also develop a social support network in an exercise class that you might not form when exercising alone,” says Hafeez.
+                            <br><br>
+                            Think of t'ai chi like meditation, only with movement added. The movements in t'ai chi help stretch, rotate and twist muscles, tendons and ligaments in the body. They'll be gently stretched and released, helping release tension in our bodies. T'ai chi is unlike the exercises we grew up with, in the sense that t'ai chi is meant to be effortless. This leads to a sense of "being massaged" when flowing through the t'ai chi movements after a bit of practice over time. Yet, as gentle and effortless as t'ai chi becomes, when practiced regularly, the physical benefits of t'ai chi can be comparable to resistance training and brisk walking. In fact Time Magazine's article on April 28, 2017, "Why Tai Chi is as Good for You as Crossfit," was a bit stunning given that t'ai chi is perhaps the lowest impact exercise known, even safe for those with rheumatoid arthritis using specialized t'ai chi forms.
+                            <br><br>
+                            While the movements are improving your physical health, the medatative aspects of t'ai chi help the mental side of things. Practicing t'ai chi can improve our moods, as well as lessen the effects of depression and anxiety. Regular meditation practice helps rewire the brain in response to certain experiences. These improved connections help shore up our emotional stability, meaning our brains are able to cope better with the daily stresses we face and feel more in control during difficult situations. In fact, research shows that those who meditate are better able to redirect negative and harmful thoughts altogether.
+                            <br><br>
+                            While enjoying the improved physical health t'ai chi offers, and the mental/emotional benefits of t'ai chi meditation aspect, you will discover your performance on all levels will improve, becoming more powerful and paradoxically more effortless. This "effortless" approach to life t'ai chi cultivates is transformative on many levels, and perhaps best exemplified in the unbendable arm t'ai chi exercise.
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Walk Regularly to Help Ease the Blues</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Y_s_QBEZ_wU?si=klrJiGcT2saJ2_1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Simply putting one foot in front of the other may be the trick to feeling better — that’s because walking is an aerobic exercise that’s suited for almost everyone. All it takes is a pair of comfortable, supportive shoes, and you’re ready to go.
+                            <br><br>
+                            “Practical wisdom suggests that doing something is better than doing nothing in terms of physical activity,” says Muzina. If depression has made you sedentary, start off slowly and gradually increase time and distance, he advises.
+                            <br><br>
+                            Hafeez agrees. “If you set too high of expectations, you may self-blame and feel guilty if you don’t meet those expectations. Set expectations that are realistic, such as going on a five-minute walk,” she explains.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Get a Healthy Dose of Sunlight by Heading Outdoors</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/WZ-M-9JpMn8?si=sdsn36x_Ws6VvPa_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            If you enjoy being outdoors, even simple activities such as gardening, throwing a ball around with your kids, or washing your car may do your mood some good. One reason may be that sunlight has been shown to facilitate increases in serotonin, a mood-supporting brain chemical. Changes in brain chemicals during the darker, colder months have been linked to some cases of seasonal affective disorder.
+                            <br><br>
+                            Sunlight supports better sleep and sets people’s circadian rhythms by regulating the levels of serotonin and melatonin,” explains Alexis Parcells, MD, a board-certified plastic surgeon, owner of Parcells Plastic Surgery, and founder of SUNNIE Wrinkle Reducing Studio. Melatonin is a hormone that is produced in the body in the evening when it’s time to prepare your body for sleep. Waking up to bright light tells your body to stop making melatonin, setting your body up for your day. According to the National Institutes of Health, if you get an hour of light in the morning, you can sleep better at night. 
+                            <br><br>
+                            Besides, A 2020 review suggests you have a higher risk of depression if you have low vitamin D levels. Getting some natural sunlight can increase the production of vitamin D to help with depression symptoms and improve your overall mental health and well-being. 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Break Out of a Funk by Bouncing</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/6GqxRoLrATk?si=NGrOPg1rNMCZFPe_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Having a hard time finding an exercise you enjoy? One simple strategy is to bounce. Jumping on a mini trampoline, also known as a rebounder, is a fun way to work your cardiovascular system without taxing your joints.
+                            <br><br>
+                            “You don’t need to jump, but bend your knees and bounce as quickly as you can for a few minutes,” says Dr. Bennett. “This is an easy way to oxygenate your brain and get some endorphins flowing.”
+                            <br><br>
+                            According to Hafeez, trampoline hopping can cause your brain to release serotonin and oxytocin, two more chemicals that improve happiness. This is similar to other aerobic exercise types. Additionally, according to Hafeez, "the spike in neurochemicals will give the feeling of being happy and help with depression." Hafeez continues, "Rebounding exercises also help you relax, promote better sleeping patterns, increase blood flow to muscles, and loosen overused muscles."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Pilates workout to health the day</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/xSLcAxZi2Wk?si=q6H4bMtawkX1o0_q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Pilates is a perfect option as it provides an approachable, gentle movement routine that directly addresses the ailments listed above while being strenuous enough to release the necessary mood-boosting endorphins.
+                            <br><br>
+                            Depression and anxiety can be understood as an overwhelming onset of physical and mental symptoms that disallow you from living a fulfilled, enjoyable life. Because Pilates helps to connect the mind and body through holistic, contemplative practice, it can help combat the feelings of disconnect and hopelessness that depression can bring. Pilates invites awareness and control back into your life!
+                            <br><br>
+                            With deep breathing, meditative movements calm the anxious mind while reducing stress. Tension is released through the strengthening and lengthening of the muscles, and physical symptoms are alleviated. Because Pilates incorporates a strong mind-body connection, you are focused inward, achieving a sense of accomplishment and confidence that creates a healthy cycle of empowering positivity. Each time you practice Pilates, you are reminding yourself that you matter, and that mental fortitude remains with you for the rest of your day.
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Fitness with Basketball to move your body</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CMQp0bwjokw?si=i2bHaU9_FeLZGPQC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Basketball offers fantastic health and mental cognition benefits. When you play basketball, you must remain constantly aware of what is going on around you. This serves to sharpen your mental focus. You need to be aware of where other players are situated and what moves to make next.  Decisions must be made in a split second and you are often under pressure to react quickly and accurately to your opponents.
+                            <br><br>
+                            Because basketball helps to improve motor skills and coordination, you will find other areas of your life improving that also make use of these skills. Basketball will help you to build confidence and to improve your overall self-esteem. Basketball will help improve your sleeping habits and reduce stress.
+                            <br><br>
+                            When you play basketball, the brain will release "feel-good" hormones such as dopamine and endorphins. These chemicals make playing basketball positively
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Swimming to Chill Your Mood</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/p6ROh-M7S0k?si=0cYQ35KGOm2uwOMY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Swimming seems especially adept at influencing mood by increasing the number of certain neurotransmitters in your brain, namely serotonin, noradrenalin, and dopamine. These “feel-good” brain chemicals are boosted by vigorous physical activity and also increase steroid reserves, which allows you to become more resilient to stress.
+                            <br><br>
+                            In addition to hormones and brain chemicals that can help you better regulate mood, aerobic exercise has also been shown to increase the levels of brain-derived neurotrophic factor, a protein in your brain and spinal cord that promotes the survival, growth, and maintenance of neurons. John Ratey, a Harvard psychiatrist and author of “Spark: The Revolutionary New Science of Exercise and the Brain,” has described BDNF as being like “Miracle-Gro for your brain.”
+                            <br><br>
+                            Exercise, and swimming specifically, helps your brain increase its levels of BDNF. A number of studies in animals—rats and fish, specifically—have shown a clear correlation between swimming as exercise and increased levels of BDNF in your brain. These higher levels can have wide-ranging effects on cognition, memory, and mood regulation.
+                            <br><br>
+                            Furthermore, one of exercise’s most amazing benefits is how it can help you get better rest at night. Exercise helps you fall asleep more quickly and stay asleep longer, according to an article on Johns Hopkins Medicine’s website. Swimming is a great way to increase your body’s capacity for high-quality sleep, which in turn can help you feel less stressed out. When you work hard during the day and expend a lot of energy, naturally you’ll probably feel more tired later than if you just sat around all day.
+                            <br><br>
+                            And we’re not talking about hours on end of exercise, either. The Johns Hopkins Medicine article notes that “people who engage in at least 30 minutes of moderate aerobic exercise may see a difference in sleep quality that same night.”
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Go for Cycling</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/rEqRmKAQ5xM?si=KSWXAp2G8oE2OQvo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Exercise like cycling can lower the levels of your body’s stress hormone, cortisol. Getting on your bike can relieve tension in your body too. Research shows that those who regularly cycle have a significantly lower risk of feeling stressed.
+                            <br><br>
+                            Feeling depressed can leave you with low energy levels. But getting out for a cycling can boost your mood. And the NHS says that regular exercise is especially useful for people with mild to moderate depression.
+                            <br><br>
+                            After pedaling a stationary bike for just 15 minutes, their level of cortisol, a stress hormone, declined. Cycling outdoors in natural surroundings only magnifies these benefits. That's because spending time in nature can, in itself, reduce stress and decrease symptoms of depression and anxiety.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Go for a Hiking Trip</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/UfoZfQLWiiw?si=TsSudhUl_Y-cZqMl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Our lives are busier than ever. Nine to five jobs, full social calendars and everyday life admin is enough to keep us at a permanent level of stress below the surface. Going for a hike reduces your blood pressure and cortisol levels producing a calming effect only nature can offer - over an above the benefits of exercise alone.
+                            <br><br>
+                            Getting out into nature decreases what psychologists call 'rumination', which are negative thought patterns that play over and over in our heads such as dwelling on embarrassing or disappointing moments or thinking about everything we think is wrong with our lives. Never underestimate the 'happiness effect' of being outdoors.
+                            <br><br>
+                            Walking or climbing over uneven terrain uses 28% more energy than walking over flat ground. You are also removing all the new age stimuli that we often expose ourselves to throughout the day and right before bedtime (phones, computers, TV's and the like). The result? Better sleep!
+                            <br><br>
+                            Associated with the benefits of lowering stress levels, hiking has been proven to reduce anxiety by quietening the mind and allowing you to zone in on your breathing to a part meditative state. For natural stress relief and an instant mood boost, head outdoors.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Playing Tennis to Reduce Stress</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CRLKCqcXDOY?si=lb3oiH6sv9LXG4V9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Stress and anxiety are issues that affect many people. They may be caused by work or everyday life. Luckily, there are many ways to manage these issues, and tennis is one of them.
+                            <br><br>
+                            Why is tennis helpful? It is a dynamic sport that requires a lot of concentration and precision to coordinate mind and movement. Playing tennis leaves you feeling good. There's no better sensation than "good exhaustion", of leaving it all on the court, when you finish your match or training session. This helps you feel relaxed and happy.
+                            <br><br>
+                            When you're on the court, nothing else exists: you're in a sort of bubble where you're focused on the ball and your game. It's an effective way to free your mind from other troubles and feel at peace. If you're focusing on your game, you can't focus on your worries
+                            <br><br>
+                            Tennis can help you bond with others and create a strong support network. Playing with friends or family, taking classes, or participating in tournaments can give you a chance to meet new people and make new friends.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">A Chill and Relax Sport: Golf</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CN3ThL8DgFM?si=2EDHnwm5D_nLHB_u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Playing golf gets your circulation going thus encouraging your heart to work more efficiently. This sport will lower your chances of having a heart attack or any cardiovascular issues. Moreover, golf is a great way of reducing stress and anxiety. The beautiful surroundings and fresh air will release endorphins in your body – making you feel more relaxed, stress free, and happy. It is believed that playing golf tends to decrease the levels of stress in a human body.
+                            <br><br>
+                            Golf is a cerebral sport. It requires you to focus, plan moves, and execute strategies.By keeping your brain active and in thinking mode, you can focus more on the game and less on the things that may make you feel sad or depressed. People of all ages and abilities can play this game. The best way to combat stress and anxiety is to keep yourself busy with healthy activities. Golf teaches patience – and with patience comes calmness. Calmness melts down your fears, stress levels, and anxiety leaving your mind and body relaxed.
+                            <br><br>
+                            Besides, psychologists believe that the mental benefits from interacting in a setting such as a game of golf release dopamine, a chemical that mediates pleasure in the brain. People can also benefit from the social gathering at a golf club where people from different backgrounds and mindsets are present. However, this will not only help in building good networking but business-related associations too.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">martial Arts: TAEKWONDO</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4dSjAurn86U?si=o45qkIyrj9VnXMJh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Martial arts provide a number of benefits for those who choose take it up as a way to relieve stress. It greatly improves your confidence, alertness, focus, and attention. It also improves the state of your physical body with the work out sessions. When you receive all these benefits together, it not only improves your body, but also your mind and soul.
+                            <br><br>
+                            Many psychologists have proven through research, the affirmative correlations between lower stress levels and traditional training in Taekwondo. It is also known to have brought down levels of aggression and hostility and enhanced self-confidence and self-esteem in individuals. Taekwondo includes a lot of ancient Asian cultural techniques that help in developing an individual’s outlook towards life, and also to live peaceably with others in the community.
+                            <br><br>
+                            Taekwondo helps in reducing stress by giving you better control over your breath. This is done through breath counting that is a form of meditation. It is a basic technique that is commonly taught by experts in many stress management courses. In this technique, you inhale and exhale by counting while you breathe. Count from one to four while breathing in, while exhaling you count a little longer, until six.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Release Stress: Let's Dance!</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9DhwZqNJkIU?si=IK5PnFWjgcZ3YS0z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Most of us love to dance (especially Westcor folks), but do we ever consider it as a form of exercise? Dancing is not only a fun way to socialize and express ourselves, but it also has a plethora of health benefits. From reducing stress levels to improving cardiovascular health, dancing has become an increasingly popular way to remain fit amongst music fans and professionals alike. Join me as we explore some of the many health benefits of dancing and how it can help you be healthier and happier.
+                            <br><br>
+                            Dancing is one of the best stress-busters out there. The endorphins released when you’re dancing reduces stress and anxiety, and ultimately gives you a sense of overall well-being. The dance moves and rhythm relieve you of the pressure and keep your mind relaxed. Dancing releases endorphins, which are the feel-good hormones in our body. These hormones turn up the positivity meter and transform our mood. Since dancing requires a lot of movement and coordination, it removes our focus from everyday problems and anxieties.
+                            <br><br>
+                            If you’re bored of hitting the treadmill, give dancing a try. Dancing uses almost every muscle group in your body and helps with burning calories. It also helps in strengthening your muscles and improving your posture. Moreover, it’s a great cardiovascular exercise and helps continue good heart health.
+                            <br><br>
+                            With all these incredible benefits, why not add some dancing to your routine? Whether it’s jazz, ballroom, or hip-hop, choose the style that works for you and get into the rhythm. The best part is that it’s adaptable for people of all ages and abilities. So put on your favorite song, let yourself lose in the moment and dance on! Not only will it improve your health physically, but it will also give you a happy and fulfilled lifestyle. Dancing alone can change so many things in your life!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Rock Climbing</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/E9_jyAh36YU?si=EUy8ympHn_63Lf-j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            In bouldering (a type of rock climbing done without ropes or safety harnesses) the routes climbers take are called problems – and justly so, as a rock climbing requires problem-solving skills. Navigating routes demands a climber to judge their individual abilities, such as reach, strength required to complete the next step, current energy levels and route planning. Furthermore, rock climbing requires hand-eye coordination necessary for a climber to judge what he or she sees in a crag and how to reach it.
+                            <br><br>
+                            Rock climbing reduces stress by increasing levels of norepinephrine, a neurotransmitter in the body that aids in releasing stress. Climbers oftentimes become immersed in the flow of the activity enabling them to become consumed in the activity of reaching, climbing and leaping, creating as sense of ecstasy.
+                            <br><br>
+                            Moreover, fear is among the greatest obstacles which prevent us from enjoying life to its fullest extent. Since of the most commonly held fears among people are the fear of heights and the fear of falling from heights. Rock climbing is a fantastic way to conquer these fears. Climbers are frequently strapped to harnesses, whether or not the climb is being done indoors or outdoors. The harness serves as a safety measure, preventing climbers from falling when should they lose their balance or grip. With the security of the harness, climbers can reach heights at their own comfort level. Conquering this fear of heights empowers many climbers and helps build confidence and self-esteem.
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Social Exercise: Bowling</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/EYdmpj94DbU?si=vIOEtiuBjQBYUZgp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Flexibility in bowling is important to help with range of motion and balance. When you approach the lane to throw the ball, balance and core strength are key to releasing the ball properly for the best result. Running and other more intense exercise may be hard on your joints. Bowling provides cardiovascular exercise that is low impact. It is an easy way to relax while also getting some important exercise.
+                            <br><br>
+                            Stress relief is also important, especially during these very difficult times we are living in. Bowling is often done in a group, which provides social interaction and helps improve mental well-being. It helps stimulate endorphins and gets your blood flowing. These are two important factors in helping to reduce stress.
+                            <br><br>
+                            How great does it feel to go up to the lanes, release the ball, and throw a strike or pick up a spare? It makes you smile and you’ll want to do it again. Let’s bowl!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Ultimate Surfing</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CXyH30GgwbI?si=8cSK05pFG1uLFDzt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Surfing requires individuals to be fully present in the moment, immersed in the rhythmic movement of the waves. This state of intense focus and engagement, often referred to as a flow state, promotes mindfulness. Surfing allows people to release distractions and worries, creating a mental space that enhances self-awareness and reduces stress
+                            <br><br>
+                            Engaging in physical activity like paddling and riding waves releases endorphins and triggers the body’s relaxation response. Surfing provides a natural outlet for stress relief, helping individuals to unwind, clear their minds, and experience a sense of tranquility. The combination of physical exertion, the soothing sound of the ocean, and the connection with nature contributes to stress reduction.
+                            <br><br>
+                            Surfing involves navigating the ever-changing waves, which can mirror the ebb and flow of emotions. As individuals ride the waves, they learn to adapt, stay balanced, and regulate their emotions in response to the dynamic environment. This process of emotional regulation on the surfboard can translate into better coping skills and emotional resilience in daily life.
+                            <br><br>
+                            The natural environment of the ocean and the act of riding waves can foster a deep connection with nature. Being surrounded by the vastness of the sea, the sound of crashing waves, and the beauty of the coastal landscape can evoke a sense of awe and serenity. This connection with nature has been shown to have positive effects on mental well-being, promoting feelings of calmness, connectedness, and gratitude.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Smooth exercise: Ice Skating</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/rv-mHUQG6lg?si=CI3nb56jODw9W7qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Have you ever seen a person skating and frowning at the same time? Of course not! Between the music, lights, sunlight, fresh air, social aspect, and health benefits, skating can be a very fun workout!
+                            <br><br>
+                            The demand of ice skating on people’s balance, coordination and endurance means it takes lots of concentration to get right. The physical exercise also releases endorphins, otherwise known as happy hormones, in the brain. The combination of these two effects make ice skating a great activity for those looking to relieve stress or improve their wellbeing.
+                            <br><br>
+                            Ice skating is also a highly challenging exercise, with falls and mistakes a common occurrence at every ability level. As such, it’s a great activity for building mental resilience and boosting confidence, self-esteem and a sense of achievement whenever skaters succeed.
+                            <br><br>
+                            Whether you visit a rink with your friends and family, take part in a group lesson or work with a coach, ice skating is a very sociable activity. A great way to get to know people and make new friends, outdoor ice rinks also give skaters plenty of fresh air and stimulation from surroundings at any time of day.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Let's Go for Kayaking/Canoeing</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/KV2OWycvsew?si=1fPV9oUUUBzuuUS8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            As many physical benefits as there are to paddling, there are just as many mental ones,” says Wise. Kayaking is an excellent form of stress relief. Aerobic exercise, like kayaking, triggers the release of brain chemicals that can quickly improve your mood, according to Harvard Health Publications. Plus, just being by the water provides a nice relaxing atmosphere.
+                            <br><br>
+                            “Being by water meditates you,” says Wallace J. Nichols, Ph.D., author of Blue Mind. “It puts you in that relaxed state. You don’t need to study or practice meditation. You just need to pay attention to the water around you.”
+                            <br><br>
+                            “Outdoor exercise can be adapted to anyone’s level of fitness,” advises Tina Vindum, the author of Tina Vindum’s Outdoor Fitness: Step Out of the Gym into the Best Shape of Your Life and the first outdoor fitness instructor accredited by the American Council on Exercise.
+                            <br><br>
+                            Kayaking, specifically, is great for all ages because it is low impact. “Unlike running which takes a toll on knees and ankles, paddling is less demanding on joints and tissues,” says Diana Gerstacker, The Active Times. “Good news for those recovering from injury.”
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Explore to Nature: Snowboarding</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/7VBalG0IhhI?si=M0TcQ4fL7SDEaW7e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Aerobic and cardiovascular exercise through skiing and snowboarding is proven to reduce the levels of the body’s stress hormones, whilst in return, stimulate the production of endorphins, which are chemicals in the brain that act as handy mood elevators. Alongside boosting your mood levels, a weeks’ worth of snowsports is guaranteed to elevate your fitness, meaning your group will feel the results for a while, even after arriving back home.
+                            <br><br>
+                            Whether you have skied before or are completely new to the sport, learning or improving at a sport is an invaluable way to develop your confidence. You may also find that it will gain a newfound passion for snowsports when experiencing the thrill of making the way successfully down a slope for the first time. 
+                            <br><br>
+                            Nothing beats the outstanding beauty of the mountains, no matter whether you’re in North America or the European Alps. Taking in those panoramic views and breathing in the fresh mountain air is rejuvenating for the mind and soul.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">A Challenge Sport: Archery</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/3YYfOEMXP08?si=r1cXPy8EJLJxyPz7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            This one might seem counterintuitive - especially if you’re competing - but archery requires you to stay calm under pressure. Archers develop this ability by working on managing their breathing, concentration and performance nerves. These techniques can be carried through to every other area of your life, from pressing work deadlines, to exam pressures or stressful events.
+                            <br><br>
+                            A study by H.A. Aysan (2016), showed that archery has a positive effect on decreasing the symptoms of stress. It is almost a form of meditation, letting go of stress and letting the shooting just happen.
+                            <br><br>
+                            Why not come along to your local club and find out? You’ll find friendly, supportive people who just want to help you shoot the very best you can. Sign up to their next beginner’s course, or see if they’re holding a “Have a Go” event so you can try archery for yourself. 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+
+                        <div class="box-title">Relax Outdoor Sport: Fishing</div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/atd28n7CB-c?si=RQZFOM7tJcmRbzbW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div>
+                            Fishing requires lots of focus and awareness. This takes your mind off internal conflict and stress, similar to meditation. As a result, it helps to reduce anxiety, fight off depression, and promote relaxation.
+                            <br><br>
+                            Studies have shown that fishing lowers your cortisol levels (otherwise known as the stress hormone). This positive effect can last for as long as three weeks after a fishing trip. Fishing has even been used to help people who have experienced trauma or suffer from PTSD.
+                            <br><br>
+                            Fishing is never an exact science. The bait that caught you the big one the day before can be totally ineffective the next. Changing up your bait, finding new fishing spots, and trouble-shooting fishing rod issues may seem like simple problems. However, all of these challenges are helping you develop problem-solving and analytical skills, improving your cognitive function and creative thinking.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <ul class="pagination" id="pagination"></ul>
+        </div>
+    </body>
+</html>
+

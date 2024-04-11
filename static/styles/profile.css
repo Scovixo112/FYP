@@ -1,0 +1,321 @@
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
+    background: #E0D9D3;
+    background-image: url('../images/profile.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.top-box {
+    background: #94785A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    text-align: right;
+}
+
+.top-box p {
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000000;
+    text-decoration: overline;
+}
+
+.top-box a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.horizontal-line {
+    border-top: 1px solid #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Stretch both boxes to have the same height */
+    height: auto;
+}
+
+.left-box,
+.right-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-box {
+    width: 25%;
+    background: #f6f5f3a3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.left-box img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.functions {
+    border-right: 1px solid #ccc;
+    padding-right: 12px;
+    padding-left: 15px;
+    background-color: #bb9a889f;
+    border: 1px solid #000000;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.functions a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 18px;
+    /* margin-left: 15px; */
+}
+
+.functions a:hover {
+    background-color: #f0f0f0;
+    border-radius: 14px;
+}
+
+.right-box {
+    width: 80%;
+    background: #f6f5f3a3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#user {
+    text-align: center;
+    font-size: 65px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info-box,
+.todo-box {
+    background-color: #f6f5f3a3;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 20px;
+    border: 2px solid #000000;
+}
+
+.info-box h4,
+.todo-box h4,
+.mental-health-status h4 {
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.info-box p,
+.todo-box p {
+    margin-bottom: 8px;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.todo-box {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 20px;
+    text-align: left; /* Align text to the left */
+}
+
+#editIcon,
+.delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#editIcon:hover,
+.delete-icon:hover {
+    color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    position: relative;
+    margin-bottom: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+ul li .edit-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+#editForm {
+    display: none;
+    margin-top: 20px;
+}
+
+.mental-health-status {
+    background-color: #f6f5f3a3;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+    position: relative;
+    border: 2px solid #000000;
+}
+
+/* .mental-health-status #report-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #007bff;
+} */
+
+.mental-health-status p {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    display: inline-block; /* Display button inline */
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underlines from links */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.opt-in-message,
+.result-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.popup-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: left;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: auto;
+}
+
+#report-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.report-icon i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.info-box,
+.todo-box{
+    transition: background-color 0.3s;
+}
+
+.info-box:hover,
+.mental-health-status:hover,
+.todo-box:hover {
+    background-color: #ccc;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-box,
+.todo-box,
+.mental-health-status,
+.functions {
+    animation: slideIn 0.8s ease-out;
+}
+
+.historyPopup h4{
+    font-weight: bolder;
+    font-size: 18px;
+}

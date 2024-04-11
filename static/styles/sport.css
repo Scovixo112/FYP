@@ -1,0 +1,235 @@
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
+    background: #E0D9D3;
+    background-image: url('../images/sport.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.top-box {
+    background: #94785A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    text-align: right;
+}
+
+.top-box p {
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000000;
+    text-decoration: overline;
+}
+
+.top-box a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.horizontal-line {
+    border-top: 1px solid #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Stretch both boxes to have the same height */
+    height: auto;
+}
+
+.left-box,
+.right-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-box {
+    width: 25%;
+    background: #f6f5f3a3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.left-box img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.functions {
+    border-right: 1px solid #ccc;
+    padding-right: 12px;
+    padding-left: 15px;
+    background-color: #bb9a889f;
+    border: 1px solid #000000;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.functions a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 18px;
+    /* margin-left: 15px; */
+}
+
+.functions a:hover {
+    background-color: #f0f0f0;
+    border-radius: 14px;
+}
+
+.right-box {
+    width: 80%;
+    background: #f6f5f3a3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sport-area-title {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: Bradley Hand ITC;
+}
+
+.rectangle-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.box-content {
+    display: flex;
+    align-items: center;
+    text-align: justify;
+}
+
+.box-image {
+    max-width: 40%;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.vertical-line {
+    height: 100%;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
+    position: relative;  /* needs to be correct */
+}
+
+.box-title-content {
+    flex-grow: 1;
+}
+
+.box-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+.box-text {
+    max-width: 60%;
+}
+
+.box-title-content::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #ccc;
+    top: 0;
+    right: 0;
+}
+
+.rectangle-box {
+    /* Your existing styles for rectangle-box */
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+.rectangle-box {
+    /* Your existing styles for rectangle-box */
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center the child elements horizontally */
+    background: #fff;
+    color: #5a4025;
+    padding: 10px 40px;
+    border-radius: 6px;
+}
+
+.pagination ul {
+    margin: 20px 30px;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 0 10px;
+    background: #e1e0e0b6;
+    width: 45px;
+    height: 45px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 45px;
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+.rectangle-box {
+    transition: background-color 0.3s; /* Add a smooth transition for color change */
+    animation: slideIn 0.8s ease-out;
+}
+
+.rectangle-box:hover {
+    background-color: #ccc; /* Change to your desired hover color */
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

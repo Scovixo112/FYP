@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/profile.css') }}" >
+    <script type="text/javascript" src="{{ url_for('static', filename='script/profile.js') }}"></script>
+
+
+
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="top-box">
+        <p>Mortal</p>
+        <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-stretch min-vh-100">
+        <div class="col-md-4 left-box">
+            <!-- Left box content -->
+            <img src="{{ url_for('static', filename='images/welcome.png')}}">
+            <div class="functions">
+                <a href="{{ url_for('profile' )}}"><i class="fas fa-user" style="font-size: 22px;"></i> User Profile</a>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" style="font-size: 22px;"></i> Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()"><i class="fa fa-phone" style="font-size: 22px; color:rgb(181, 8, 8);"></i> Emergency Call</a>
+                <a href="{{ url_for('community_area') }}"><i class="fa fa-city" style="font-size: 22px;"></i> Community Area</a>
+                <a href="{{ url_for('activities')}}"><i class="fas fa-gamepad" style="font-size: 22px;"></i> Activities</a>
+            </div>
+        </div>
+
+        <div class="col-md-8 right-box">
+            <h2 class="text-center " style="font-weight: bold;">User Profile</h2>
+            <i id="user" class="fa fa-user" aria-hidden="true"></i>
+                <div class="info-box">
+                    <h4 class="text-center">Information</h4>
+
+                    {% if user_data %}
+                        <p><strong>Name:</strong> {{ user_data.get('name', 'N/A') }}</p>
+                        <p><strong>Age:</strong> {{ user_data.get('age', 'N/A') }}</p>
+                        <p><strong>Gender:</strong> {{ user_data.get('gender', 'N/A') }}</p>
+                        <p><strong>Phone Number:</strong> {{ user_data.get('phone_number', 'N/A') }}</p>
+
+                        <!-- Add an edit icon to the top right corner of the info-box -->
+                        <a href="edit_profile" class="edit-icon"><i class="fas fa-edit"></i></a>
+                    {% else %}
+                        <p>No information available.</p>
+                    {% endif %}
+                </div>
+
+            <div class="todo-box">
+                <h4 class="text-center">TODO List</h4>
+
+                <!-- Edit Icon -->
+                <div id="editIcon" class="edit-icon" onclick="toggleEditForm()"><i class="fas fa-edit"></i></div>
+
+                <!-- Display TODO List -->
+                <ul id="todoList">
+                    {% if user_data and user_data.get('todo_list') %}
+                        {% for todo in user_data['todo_list'] %}
+                            <li>
+                                {{ todo.todo_task }}
+                                {% set user_id = user_data.get('_id') %}
+                                <!-- <span class="edit-icon" onclick="editTodo('{{ user_id }}','{{ todo.todo_task|string }}')">✎</span> -->
+                                <span class="delete-icon" onclick="deleteTodo('{{ user_id }}','{{ todo.todo_task|string }}')"><i class="fas fa-trash"></i></span>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li id="emptyTodo">TODO List empty</li>
+                    {% endif %}
+                </ul>
+
+
+                <!-- Edit Form -->
+                <form id="editForm" onsubmit="return saveTodo()">
+                    <label for="newTodoTask">New Todo Task:</label>
+                    <input type="text" id="newTodoTask" name="new_todo_task" required>
+                    <button type="submit">Add Todo</button>
+                </form>
+            </div>
+                
+
+            <!--Mental Health Status-->
+            <div class="mental-health-status">
+                <h4 class="text-center">Mental Health Status</h4>
+                <i id="report-icon" class="far fa-file" onclick="showHistory()"> History</i>
+                {% if user_data and user_data.get('mental_health_status') %}
+                    <p>Latest Test Status: {{ user_data['mental_health_status'] }}</p>
+                {% else %}
+                    <p>Latest Test Status: N/A</p>
+                {% endif %}
+                <button class="btn btn-primary" onclick="showOptInMessage()">Take New Test</button>
+            </div>
+                
+                <!-- Opt-In Message -->
+            <div id="optInMessage" class="opt-in-message" style="display: none;">
+                <div class="popup-box">
+                    <span class="close-icon" onclick="closePopup()">&#10006;</span>
+                    <p>This depression self-assessment tool is provided by the World Health Organization (WHO).
+                        <br>This test does not determine your true psychological state. It only provides suggestions based on your answers.
+                        <br>It does not represent or have the medical expertise to judge the results of your mental state and whether you are a patient with depression.
+                    </p>
+                    <p>Do you agree to proceed?</p>
+                        <input type="radio" id="agreeYes" name="optInRadio" value="yes">
+                        <label for="agreeYes">Yes, I agree</label>
+                        <div class="btn-container">
+                            <button class="btn btn-primary" onclick="openAssessment()">Proceed</button>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Result Selection Popup -->
+            <div id="resultPopup" class="result-popup" style="display: none;">
+                <div class="popup-box">
+                    <p>Please submit your result:</p>
+                    <input type="radio" id="resultYes" name="resultRadio" value="yes">
+                    <label for="resultYes">Yes, you have symptoms of depression. Please consult with your health care provider.</label>
+                    <br><br>
+                    <input type="radio" id="resultNo" name="resultRadio" value="no">
+                    <label for="resultNo">No, you does not have symptoms of depression.</label>
+                    <div class="btn-container">
+                        <button class="btn btn-primary" onclick="saveResult()">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Popup -->
+            <div id="historyPopup" class="history-popup" style="display: none;">
+                <div class="popup-box">
+                    <span class="close-icon" onclick="closeHistoryPopup()">&#10006;</span>
+                    <h4 class="text-center" style="font-size: 23px; font-weight: bolder;">Mental Health Status History</h4>
+                    <ul id="historyList">
+                        <!-- History items will be dynamically added here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
+<script>
+    function showOptInMessage() {
+    document.getElementById('optInMessage').style.display = 'flex';
+}
+
+function openAssessment() {
+    if (document.getElementById('agreeYes').checked) {
+        window.open('https://worldhealthorg.shinyapps.io/steps_depression_tool/', '_blank');
+        document.getElementById('optInMessage').style.display = 'none';
+        document.getElementById('resultPopup').style.display = 'flex';
+    } else {
+        alert('Please agree to proceed.');
+    }
+}
+
+
+function saveResult() {
+    var resultValue = document.querySelector('input[name="resultRadio"]:checked').value;
+
+    // Make an AJAX request to update mental health status in MongoDB
+    fetch('/update_mental_health_status', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "user_id": "{{ user_data['_id'] }}",
+            "result": resultValue
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+            window.location.reload();
+
+            // Update the mental health status displayed on the page
+            var statusElement = document.getElementById('mentalHealthStatus');
+            if (resultValue === 'yes') {
+                statusElement.innerHTML = 'Yes, user have symptoms of depression.';
+            } else if (resultValue === 'no') {
+                statusElement.innerHTML = 'No, user does not have symptoms of depression.';
+            } else {
+                statusElement.innerHTML = 'N/A';
+            }
+
+        } else {
+            console.error('Error:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+function closePopup() {
+    document.getElementById('optInMessage').style.display = 'none';
+    document.getElementById('resultPopup').style.display = 'none';
+}
+
+
+function showHistory() {
+    // Fetch and display mental health status history when the user clicks on the report icon
+    fetch('/get_mental_health_history')
+        .then(response => response.json())
+        .then(data => {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = ''; // Clear previous history
+
+            if (data.history.length > 0) {
+                data.history.forEach(entry => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${entry.status} - ${entry.time}`;
+                    historyList.appendChild(listItem);
+                });
+            } else {
+                const listItem = document.createElement('li');
+                listItem.textContent = 'No history available.';
+                historyList.appendChild(listItem);
+            }
+
+            document.getElementById('historyPopup').style.display = 'flex';
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+function closeHistoryPopup() {
+    document.getElementById('historyPopup').style.display = 'none';
+}
+</script>

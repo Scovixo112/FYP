@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/music.css') }}" >
+    <script type="text/javascript" src="{{ url_for('static', filename='script/meditation.js') }}"></script>
+
+
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="top-box">
+        <p>Mortal</p>
+        <a class="btn btn-light rounded-pill px-3" href="{{ url_for('index') }}" role="button">Logout</a>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-stretch min-vh-100">
+        <div class="col-md-4 left-box">
+            <!-- Left box content -->
+            <img src="{{ url_for('static', filename='images/welcome.png')}}" alt="Logo">
+            <div class="functions">
+                <a href="{{ url_for('profile' )}}"><i class="fas fa-user" style="font-size: 22px;"></i> User Profile</a>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" style="font-size: 22px;"></i> Home</a>
+                <a href="{{ url_for('home') }}" onclick="scrollToTop()"><i class="fa fa-phone" style="font-size: 22px; color:rgb(181, 8, 8);"></i> Emergency Call</a>
+                <a href="{{ url_for('community_area') }}"><i class="fa fa-city" style="font-size: 22px;"></i> Community Area</a>
+                <a href="{{ url_for('activities')}}"><i class="fas fa-gamepad" style="font-size: 22px;"></i> Activities</a>
+            </div>
+        </div>
+
+        <!-- Right box content -->
+        <div class="col-md-8 right-box">
+            <div id="music-area-title">Music Area</div>
+
+            <!-- Rectangle Boxes -->
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Unwell" by Matchbox Twenty</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6Bm6qUCSatPAqkQllFL7oA?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>The first few lines of the song immediately describe the person’s sense of loneliness and lack of energy. Lyrics like “all night hearing voices tellin' me that I should get some sleep because tomorrow might be good for somethin'” illustrate the hopelessness about the future often felt by people with depression. The rest of the song goes on to display the person’s determination to convince the listener that they aren’t “crazy” or sick, just “unwell.”
+                            <br><br>
+                            This song may mimic the thoughts and feelings of many people with depression and mental disorders. Most with these conditions have experienced what it’s like to be “headed for a breakdown,” and sometimes songs that talk about what we’re going through or have gone through help us feel like we aren’t alone.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=WziA88-n02k" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Better Place" by Rachel Platten</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7xbXQeepclfQNqI3mLPb3c?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>Fun fact: When Rachel Platten recorded her music video for “Better Place,” she wanted to conduct a sort of social experiment in which her fans were recorded listening to the song. She was able to watch these recordings on her own to see how her song impacted her fans.
+                            <br><br>
+                            The song opens up with the lyrics, “I'll tell the world, I'll sing a song. It's a better place since you came along,” and goes on to shed love and support to the listeners. “Better Place” is a reminder of how important and loved you are, and lines like “it's a better place since you came along” offer comfort to its listeners, reminding them that they are loved, they are important, and they are not alone.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=pvI9PuGorwI" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Screen" by Twenty One Pilots</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1pKmfhwbZvsyYUP2eOGdw5?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            This song describes the person as having a screen on their chest that displays their thoughts and emotions, making it impossible for them to hide their feelings from others. With lyrics like, “there's some people and I who have a really tough time getting through this life,” and “we’re broken people,” the song also acts as an anthem of support for those who feel this way, too.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=NK7WWbXlkj4" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Last Hope" by Paramore</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2VBluJiNj9bKohWX0dY1Lh?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>“Last Hope” is a song about depression that hits the nail on the head for many people when it comes to describing what having depression is like. It describes the ebb and flow of depression symptoms that many can relate to, starting with the idea of needing to let go of control, hitting a good place, and then experiencing another low.
+                            <br><br>
+                            The song describes these changes in mood with these lyrics, “I don't even know myself at all. I thought I would be happy by now. The more I try to push it I realize. Gotta let go of control,” and “Every night I try my best to dream. Tomorrow makes it better. Then I wake up to the cold reality. And not a thing has changed.”
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=yBatuRGZAmA" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Heavy" by Linkin Park</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/104buTcnP2AsxqB7U1FIZ4?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>Chester Bennington, Linkin Park’s former lead singer, became the voice of so many who struggle with mental illness. While his untimely death broke the hearts of many, he left behind a legacy in his music that’s helped many overcome depression.
+                            <br><br>
+                            Among their many other songs about depression and anxiety, “Heavy” is one of those Linkin Park songs that accurately describe the loss of control, sadness, overthinking, and confusion caused by depression. It’s another song that people with depression can relate to and find comfort in the fact that they aren’t alone in how they feel.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=5dmQ3QWpy1Q" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"1-800-273-8255" by Logic featuring Alessia Cara and Khalid</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5tz69p7tJuGPeMGwNTxYuV?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>“1-800-273-8255” was titled after a suicide prevention hotline, and rightfully so. The song is about suicidal thoughts and how isolating they can seem. It is accompanied by a music video that depicts a teenager who has friends, popularity, and family, but still feels disconnected and is contemplating suicide.
+                            <br><br>
+                            This is a feeling that many people with depression can relate to. However, while the song starts on a heartbreaking note, its primary focus is to offer support to those who are contemplating suicide.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=Kb24RrHIbFk&rco=1" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Million Reasons" by Lady Gaga</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7dZ1Odmx9jWIweQSatnRqo?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Sung by the talented Lady Gaga, “Million Reasons” is a powerful song about the power of one good reason over the millions of reasons for feeling doubtful, discouraged, and hopeless. The song encourages listeners to find the light at the end of the tunnel, to find that one good reason to keep fighting when there are a million other reasons to quit
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=en2D_5TzXCA" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Titanium" by David Guetta featuring Sia</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2i1AVZAYLhrQTvzr1hu7Jt?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>Another powerful singer, Sia, captivated her fans when she came out with the song “Titanium.” If you don’t know what titanium is, it’s a highly strong metal that’s resistant to seawater corrosion and other elements, which is why it’s the perfect name for this song.
+                            <br><br>
+                            With song lyrics like, “You shoot me down, but I won't fall. I am titanium,” Sia encourages her listeners to think of themselves as titanium, invincible against inner and outer forces that threaten to harm them. Whether it’s depression or any other mental illness, the idea of being “stone-hard as bulletproof glass” can be a much-needed boost of confidence in tough times.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=JRfuAukYTKg" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Lean On Me" by Bill Withers</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3M8FzayQWtkvOhqMn2V4T2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            This classic song delivers a message of support and unity, underlining the importance of leaning on others during difficult times.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=fOZ-MySzAac" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"What's Going On" by Marvin Gaye</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3Um9toULmYFGCpvaIPFw7l?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            This socially conscious song addresses various challenges, making it relatable for individuals struggling with feelings of confusion and distress.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=o5TmORitlKk" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Stronger" by Kelly Clarkson</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1nInOsHbtotAmEOQhtvnzP?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            If you found yourself in a situation when things did not go as planned, and you feel down and lonely, then listen to this wonderful composition by Kelly Clarkson. It is one of the most upbeat songs about life. And who knows? You might yourself come back fighting after listening to this one.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=Xn676-fLq7I" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Don’t Stop Believin'" by Journey</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/77NNZQSqzLNqh2A9JhLRkg?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            This one is a gem of a melody that reminds you why you started your journey in the first place. Sometimes people tend to lose focus halfway down on account of minor setbacks. Let this song remind your purpose and bring back the same amount of motivation. Whether it is love or life, this song proves to be relevant to anything and everything dear to you.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=1k8craCGpgs" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Ain’t No Mountain High Enough" by Marvin Gaye & Tammi Terrell</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7tqhbajSfrz2F7E1Z75ASX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Setting out to do something unconceivable is very much possible, and history has numerous records to prove it. However, it will never be easy, so you need some external motivation to show you how powerful you are. Marvin Gaye & Tammi Terrell’s “Ain’t no mountain high enough” is one of those songs that motivate you to achieve the unthinkable.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=IC5PL0XImjw" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Save the World" by Swedish House Mafia</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/65hRZOQkVjmBdusz1N7aOv?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            “Nobody kicks a dead dog.” If you want to make a difference, you got to rub off that dust and get back on your journey. The only person that has the power to make it happen is you, and that is what this song is a reminder of. It is one of the most inspirational songs for life.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=BXpdmKELE1k" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Skyscraper" by Demi Lovato</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4B3RmT3cGvh8By3WY9pbIx?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Life is as you plan to take it, and if you are strong, no obstacle can stop you from achieving what you intend to. The song’s first few lines say, “Go on and try to tear me down. I will be rising from the ground”. The song teaches you to keep the fire burning within your heart and win – no matter what!
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=r_8ydghbGSg" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Get up Stand up" by Bob Marley & The Wailers</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5MVW8uIuNuL7CQ0RyyogHI?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Bob Marley’s “get up stand up” song is the best inspirational song that we know of yet. The lyrics of the song helps to motivate any person who is feeling down or has lost hope.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=AeCHP-4iRbM" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"You’re Beautiful" by James Blunt</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0vg4WnUWvze6pBOJDTq99k?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            There are times in our lives that we like to relish certain moments. “You’re beautiful” by James Blunt is one such melody that takes up back in those memorable moments and gives you the motivation to keep going in life.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=oofSnsGkops" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Tubthumping" by Chumbawumba</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/22HYEJveCvykVDHDiEEmjZ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Numerous people give up when they are faced with failures or hit back. They don’t realize that failure is only when you are ready to accept that you have failed. Tubthumping is an uplifting soul song that reminds you never to give up.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=2H5uWRjFsGc" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Not Afraid" by Eminem</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7Ie9W94M7OjPoZVV216Xus?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            Why think you are alone when you benefit from support from your near and dear ones. And why not be someone who offers a helping hand to the needy now and then? This melody teaches us the power of walking together.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=j5-yKhDd64s" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Lemon" by Kenshi Yonezu</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7Cd17G3oNQ34OWUwS8ZxfR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            The song started with the perspective of the people that is left behind by the deceased, who still hopes that the tragedy is only a dream, how important you were for me, and how wonderful the memories that they spent together.He laments the sourness of the scent of Lemon that pains his heart greatly, before breaking to tears.During the part when Yonezu Kenshi sang「何をしていたの　何を見ていたの」, the perspective changed to the perspective of the deceased person.The deceased wishes for the person that is left behind to stay strong and just forget their memories. The deceased also stated that he is also lonely in the afterlife, and how unreal it was to be there, without his/her loved ones.In conclusion, the deceased said that every memories including bitterness and pain that he/she experienced was alive will always be remembered and loved.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=SX_ViT4Ra7k" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">“Rising Hope” by LiSA</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7LqQO6uWQHDEue1ejeUVhF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            The lyrics to Lisa's song Rising Hope speak of a world full of challenges and obstacles, with the singer acknowledging the harsh reality they face. They describe their thoughts and emotions as they navigate their way through a world that doesn't always make sense. The lyrics suggest a sense of urgency as the singer urges the listener to pay attention and watch their step. They emphasize that sometimes there is no need for common sense or convention, but what is needed instead is a strong will and determination to keep pushing forward.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=IzhMzY5avLI" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">“打上火花 / Uchiage Hanabi” by Kenshi Yonezu</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4IouQaO9GkaHC7AtMErdSa?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>In the lyrics, the artists recall special moments they shared on the beach. They remember writing on the beach and looking at each other. This is a wonderful memory with sentimental value.
+                            <br><br>
+                            The pre-chorus depicts the passage of time and the transience of life. The waves symbolize the flow of time, taking something away, perhaps representing the passing of a moment they cherished. The stillness of the night and the passing dusk suggest a sense of tranquility and reflection.
+                            <br><br>
+                            The chorus expresses the desire to preserve the magic of the moment and the desire for eternal connection. They watch in a moment of fireworks, symbolizing the fleeting nature of happiness. Still, they believe summer, a symbol of their shared time, is far from over. The intertwining of their uncertain hearts suggests a deep emotional bond that transcends uncertainty. They want the night to last forever, the connection to last forever
+
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=-tKVN2mAKRI" target="_blank">Link to YouTube</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"The Brightest Star In The Night Sky" by Escape Plan</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7mP4bBFQgt6B3sJfqkIzt2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>One of my all time favorite songs by one of my favorite Chinese bands. The first time I heard this song I wanted to cry for some reason and I had no idea what it was about, it just gives you all the FEELS. When I saw the translation it made sense. (Zhang Jie also has a great cover of this).
+                            <br><br>
+                            “Whenever I’m lost in darkness and fail to find the meaning in life, brightest star in the night sky please shine the path towards you.”
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=kGDeerbW5z8" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"Ping Fan Zhi Lu (The Ordinary Road)" by Pu Shu</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3YFGh5Kga1K40yUhuCVffM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            The original is such a classic song most Chinese people know, but I heard an acoustic guitar cover of this by a male/female group and loved it so much I posted both.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=6q5Syk54i9U" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">“The Reason I Wanted to Die” by Mika Nakashima</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2NOIV90vZjJEzbKiJyGZiS?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>"I once thought it would be over" was created by Hiroshi Akita, the lead singer of the Japanese rock band Amazarashi. The creative concept is "in order to describe the strong hope, we must first describe the deep darkness." In 2010, Mika Nakashima, who celebrated the tenth anniversary of her debut, announced that she would suspend all music activities due to Eustachian tube syndrome. Under the influence of the disease, singing became extremely difficult for her. In 2011, she came back with the single "Dear", but she has always experienced ups and downs in her status and doubts from the media since her comeback.
+                            <br><br>
+                            Mika Nakashima first requested cooperation from Amazarashi, hoping that the band could write a song with a bright rhythm for her, but then Akita Hiroshi played her an unreleased sample song of the band and thought that the song was suitable for her to sing. [4]. When she received the song, Mika Nakashima was very surprised at first, but she burst into tears at the end and felt her heart softened, so she immediately asked to sing the song. During the recording process, Mika Nakashima incorporated her own voice into the song, hoping to convey strength to the depressed and depressed audience.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=6xZWW8ZQvVs" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"好想爱这个世界啊 (Wanna to Love this World)" by Hua Chen Yu</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4ypoimFPt0SuieiBFWXCqH?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>The lyrics describe the desire and yearning for a different life, hoping to be as charming and carefree as the film's protagonist. Despite the inner pain and emotional suppression, they understand the need to work in the present moment.
+                            <br><br>
+                            The song reflects on past experiences and the hurt caused by others through words, actions, and attitudes. The singer contemplates the idea of leaving, motivated by a desire to be criticized and hurt, and to exist in a freeing way. However, they also expressed conflict about wanting to stay if someone ensured their presence.
+                            <br><br>
+                            The lyrics refer to sunsets and scrolling through cell phones, possibly alluding to a sense of loneliness and a habit of seeking solitude. They ponder when their silent resistance will overcome the challenges they face.
+                            <br><br>
+                            As the song progresses, the singer realizes the importance of letting go of past wounds and fears. They understand that embracing love and looking to the future can lead to a brighter and better life. The chorus conveys the determination to stay, endure hardships and enjoy the colorful world once a smile is lit.
+                            <br><br>
+                            Overall, "I Want to Love This World" depicts the singers' complex emotions, their struggles with self-expression, their desire for a different life, and their awareness of the importance of love, resilience, and embracing the present moment.
+                        
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=eSvnAyHFoyo" target="_blank">Link to YouTube</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"若我突然死亡" by Yi Dong</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/67VbhMbfUjhwNJuoyYcO6Y?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            What is it about? It is about depression, school violence, complete despair, and the light that is unwilling to give in and is eventually crushed. When I wrote this song, it was a really difficult time. Maybe everyone has such a period of time, and they really rely on the only thing, the weak, the dying, the invisible, the warm, a touch. Starfire clings to life. When it was more miserable, even a glimmer of light relied on my own fantasy to exist, and for a moment I was so desperate that I collapsed.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=Af4SqJVe7bY" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"全世界陪我失眠" by Silence Wang</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/37p4DPyJObyhQKEnrpsZ5d?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>
+                            This song depicts the moment when the lonely spaceship and the earth will never meet again. The protagonist sitting in the spaceship looks back through the window when he is far away from the earth. The piano simulates the flickering of the earth's surface, and the piano part plays the rotation of the quiet space. This spacecraft carrying a lonely outer space explorer will never see the earth again. It is both exile and escape. Silence Wang uses music to try to capture some fleeting moments for this lonely male protagonist. In the lyrics, "The spaceship circles the earth, and the whole world keeps me awake", it is like a faint light on a cold night, seemingly cold but full of warmth. Before the "Wasteland Trilogy" happened, before the world was covered by yellow sand, Wang Sulong used his best "Long-style lyricism" to explore the softest and most fragile areas deep in his heart in the world of music.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=8M6WUBKLKtg" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"祝我快乐 (Wish Me Happy)" by Silence Wang</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1hChoYEMloGucwEN48MN7G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>"Wish Me Happy" is a one-man show. The lonely piano, the dim lights, the singers all around each other - these are the characters murmuring to themselves before the stage curtain opens, walking to the side of the stage and facing the audience.
+                            <br><br>
+                            Life is like a huge theater. We fumbled with our script, trying to incorporate each new character, hoping that fate would favor us. There is truth and lies on the stage, and we have the opportunity to meet all kinds of people. Once we meet the right person, we realize that we have to be honest with ourselves after all. In most cases, we can tell a joke or do magic to please others, but if that person is the most humorous entertainer, he will risk all his troubles, ecstasy, and pain just to expect something in return. moment. We may be obsessed with that moment and forget about our happiness and pain. This is the story of "Wish Me a Happy Day," where the great entertainer's show begins.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=A5OTVmgNLKs" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangle-box">
+                <div class="box-content">
+                    <div class="vertical-line"></div>
+                    <div class="box-title-content">
+                        <div class="box-title">"海底 (Under the Sea)" by 凤凰传奇</div>
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2qxLetkbkAGCoOfcIOTZ9I?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        <div>"Under the Sea" tells the story of a girl whose life was lost in the sea. We can find this girl's despair in life from the lyrics. Before giving up, you still hope to be able to get out of trouble, but no one helps you, so you give up in the end, so be it. From the lyrics, you can feel that the waves are embracing the girl, while the people on the shore are laughing. The girl walked towards the bottom of the sea step by step. When you sink to the bottom of the sea, you still have illusions and try to struggle. Give up the struggle. Is this seeking death? It’s rebirth!
+                            <br><br>
+                            Society is so callous. Many people are like this girl, overwhelmed by life and slowly out of breath. Even if only one person helps them, they will not go to extremes. But the fact is that no one wants to help you. Eventually you go to extremes, and those people are like the people on the shore, like saints, despising you and constantly judging you.
+                            <br><br>
+                            <a href="https://www.youtube.com/watch?v=bdb8SZLes_c" target="_blank">Link to YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <ul class="pagination" id="pagination"></ul>
+    </div>
+
+</body>
+</html>
+
