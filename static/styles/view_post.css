@@ -69,8 +69,10 @@ body {
 
 .left-box img {
     max-width: 100%;
-    border-radius: 50%;
+    max-height: 100%;
+    border-radius: 15%;
     margin-bottom: 20px;
+    margin-top: 58px;
 }
 
 .functions {
@@ -152,6 +154,7 @@ body {
     margin-bottom: 10px;
     padding: 10px;
     border: 2px solid #979d6edf;
+    font-size: 18px;
 }
 
 .comment-item p3 {
@@ -198,5 +201,10 @@ body {
 
 .add-comment-form button:hover {
     background-color: #0253a9;
+}
+
+.comment-item:hover{
+    background-color: #70707060;
+    transition: background-color 0.3s;
 }
 

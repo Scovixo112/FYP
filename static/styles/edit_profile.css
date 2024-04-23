@@ -3,9 +3,13 @@ body {
     /* background: linear-gradient(270deg, rgba(152, 126, 80, 0.73), #94785A); */
     background: #E0D9D3;
     background-image: url('../images/edit2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
     margin: 0;
     padding: 0;
 }
+
 
 .top-box {
     background: #94785A;
@@ -66,8 +70,10 @@ body {
 
 .left-box img {
     max-width: 100%;
-    border-radius: 50%;
+    max-height: 100%;
+    border-radius: 15%;
     margin-bottom: 20px;
+    margin-top: 58px;
 }
 
 .functions {
@@ -122,6 +128,7 @@ body {
     background-color: #f6f5f3a3;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35%;
 }
 
 form {

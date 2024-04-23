@@ -10,7 +10,9 @@ function showWarningContent() {
 
     Use the "Help" button with caution.
     This button will trigger the skill of sending distress messages.
-    To send help information, double-click the "Help" button.
+
+    Remember to log in to WhatsApp in Website.
+    To send help message via WhatsApp, click on the "Help" button.
 `;
 
     alert(warningContent);

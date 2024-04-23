@@ -69,8 +69,10 @@ body {
 
 .left-box img {
     max-width: 100%;
-    border-radius: 50%;
+    max-height: 100%;
+    border-radius: 15%;
     margin-bottom: 20px;
+    margin-top: 58px;
 }
 
 .functions {

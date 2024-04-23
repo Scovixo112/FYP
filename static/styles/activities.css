@@ -68,8 +68,10 @@ body {
 
 .left-box img {
     max-width: 100%;
-    border-radius: 50%;
+    max-height: 100%;
+    border-radius: 15%;
     margin-bottom: 20px;
+    margin-top: 58px;
 }
 
 .functions {
@@ -109,7 +111,11 @@ body {
 
 .section-title {
     color: #070707;
-    font-weight: bolder;
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: Bradley Hand ITC;
 }
 
 .story-box {

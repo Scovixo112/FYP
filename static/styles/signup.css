@@ -19,7 +19,7 @@ body {
 }
 
 .left-box {
-    background: #9A616D;  /* Update background color */
+    background: #5e5b5867; /* Update background color */
     color: #fff;
     text-align: center;
     padding: 120px;
@@ -31,6 +31,15 @@ body {
     width: 100%;  /* Make the image responsive */
     max-width: 250px;  /* Set a maximum width */
     height: auto;  /* Maintain aspect ratio */
+}
+
+.featured-image img {
+    /* Set the maximum width of the image to fill the container */
+    max-width: 100%; /* Prevent the image from overflowing */
+    /* Set the maximum height of the image */
+    max-height: 100%; /* Adjust as needed */
+    /* Ensure the image maintains its aspect ratio */
+    object-fit: contain; /* or use "cover" depending on your needs */
 }
 
 .right-box {

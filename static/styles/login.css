@@ -19,7 +19,7 @@ body {
 }
 
 .left-box {
-    background: rgba(154, 97, 109, 0.8);  /* Update background color */
+    background: #5e5b5867;  /* Update background color */
     color: #fff;
     text-align: center;
     padding: 120px;
@@ -32,6 +32,7 @@ body {
     max-width: 250px;  /* Set a maximum width */
     height: auto;  /* Maintain aspect ratio */
 }
+
 
 .right-box {
     padding: 4rem;  /* Adjust padding for consistency */
