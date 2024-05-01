@@ -56,7 +56,6 @@ class CreateCommentForm(FlaskForm):
 def index():
     return render_template('login.html')
 
-
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
@@ -68,19 +67,14 @@ def login():
     if user and (bcrypt.check_password_hash(user['password'], entered_password) or user['password'] == entered_password):
         # Successful login
         session['email'] = email
-        # Store the user's email and user_id in the session
-        session['user_email'] = email
-        session['user_id'] = str(user['_id'])  # Convert ObjectId to string
-        return redirect(url_for('home'))
+        return redirect(url_for('optin'))  # Redirect to opt-in page
     else:
         # Failed login
         return render_template('login.html', error='Invalid email or password')
 
-
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
-
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -99,33 +93,41 @@ def register():
     # Add the new user to the users collection with the hashed password
     users_collection.insert_one({'email': email, 'password': hashed_password})
 
-    # Debugging statements
-    print(f"User registered: {email}")
-
-    # Log in the new user and redirect to the home page
+    # Log in the new user and redirect to opt-in page
     session['email'] = email
-    # Store the user's email in the session
-    session['user_email'] = email
+    return redirect(url_for('optin'))
 
-    return redirect(url_for('home'))
+@app.route('/optin')
+def optin():
+    if 'email' in session:
+        return render_template('optin.html', display_optin=True)
+    else:
+        return redirect(url_for('index'))  # Redirect to login if user is not logged in
 
+@app.route('/optin_agree', methods=['POST'])
+def optin_agree():
+    if 'email' in session:
+        # Set the session variable to indicate the user has agreed to the opt-in
+        session['optin_agreed'] = True
+        return redirect(url_for('home'))  # Redirect to home after agreeing
+    else:
+        return redirect(url_for('index'))  # Redirect to login if user is not logged in
 
 @app.route('/home')
 def home():
-    # Check if the user is logged in
     if 'email' in session:
+        optin_agreed = session.get('optin_agreed', False)
+
+        if not optin_agreed:
+            return redirect(url_for('optin'))  # Redirect to opt-in page if not agreed
+
         email = session['email']
-
-        # Fetch additional data from MongoDB
         user_data = users_collection.find_one({'email': email})
-
-        # Ensure user_data and emergency_contact exist in the structure
         emergency_contact = user_data.get('emergency_contact', {})
 
         return render_template('home.html', email=email, data={'emergency_contact': emergency_contact})
     else:
-        # Redirect to the login page if not logged in
-        return redirect(url_for('index'))
+        return redirect(url_for('index'))  # Redirect to login if not logged in
 
 
 @app.route('/activities')

@@ -136,3 +136,4 @@ document.getElementById("help-button").addEventListener("dblclick", function(eve
 //         agreeButton.disabled = !agreeCheckbox.checked;
 //     });
 // });
+

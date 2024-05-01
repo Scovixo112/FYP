@@ -357,16 +357,15 @@ body {
 }
 
 .optin-buttons button:hover {
-    background-color: #f0f0f0; /* Hover color */
+    background-color: #f0f0f0;
 }
 
 #agree-button {
-    background-color: #4caf50; /* Green color */
-    color: #fff; /* White text color */
+    background-color: #4caf50;
+    color: #fff;
 }
 
 #cancel-button {
-    background-color: #f44336; /* Red color */
-    color: #fff; /* White text color */
+    background-color: #f44336;
+    color: #fff;
 }
-
